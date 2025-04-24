@@ -1,6 +1,6 @@
+import 'package:SmartTrolleyWebsite/Support/CommonTextStyle.dart';
+import 'package:SmartTrolleyWebsite/Utils/AppColors.dart';
 import 'package:flutter/material.dart';
-import 'package:samrttrollywebsite/Support/CommonTextStyle.dart';
-import 'package:samrttrollywebsite/Utils/AppColors.dart';
 
 
 class TitleTextWidget extends StatelessWidget {

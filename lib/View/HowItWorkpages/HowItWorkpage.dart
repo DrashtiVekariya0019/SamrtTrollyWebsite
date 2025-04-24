@@ -1,9 +1,9 @@
+import 'package:SmartTrolleyWebsite/Controller/HowItWorkController.dart';
+import 'package:SmartTrolleyWebsite/Support/CommonElevatedButton.dart';
+import 'package:SmartTrolleyWebsite/Support/CommonTextStyle.dart';
+import 'package:SmartTrolleyWebsite/Utils/AppColors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:samrttrollywebsite/Controller/HowItWorkController.dart';
-import 'package:samrttrollywebsite/Support/CommonElevatedButton.dart';
-import 'package:samrttrollywebsite/Support/CommonTextStyle.dart';
-import 'package:samrttrollywebsite/Utils/AppColors.dart';
 
 class HowItWorkPage extends StatelessWidget {
   HowItWorkPage({super.key});

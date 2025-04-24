@@ -1,5 +1,6 @@
+import 'package:SmartTrolleyWebsite/Utils/AppColors.dart';
 import 'package:flutter/material.dart';
-import 'package:samrttrollywebsite/Utils/AppColors.dart';
+
 
 
 class CustomStyles {

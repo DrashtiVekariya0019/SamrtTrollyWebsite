@@ -1,10 +1,11 @@
+import 'package:SmartTrolleyWebsite/View/Benefitspage/Benefitspage.dart';
+import 'package:SmartTrolleyWebsite/View/ContactPages/ContactPage.dart';
+import 'package:SmartTrolleyWebsite/View/Featurespages/Featurespage.dart';
+import 'package:SmartTrolleyWebsite/View/HowItWorkpages/HowItWorkpage.dart';
+import 'package:SmartTrolleyWebsite/View/Navigationpage/GlobayKeyPage.dart';
+import 'package:SmartTrolleyWebsite/main.dart';
 import 'package:get/get.dart';
-import 'package:samrttrollywebsite/View/Benefitspage/Benefitspage.dart';
-import 'package:samrttrollywebsite/View/ContactPages/ContactPage.dart';
-import 'package:samrttrollywebsite/View/Featurespages/Featurespage.dart';
-import 'package:samrttrollywebsite/View/Navigationpage/GlobayKeyPage.dart';
-import 'package:samrttrollywebsite/View/HowItWorkpages/HowItWorkpage.dart';
-import 'package:samrttrollywebsite/main.dart';
+
 
 class AppRoutes {
   static const String splash = '/splash';

@@ -1,11 +1,11 @@
+import 'package:SmartTrolleyWebsite/Support/Footer.dart';
+import 'package:SmartTrolleyWebsite/View/Benefitspage/Benefitspage.dart';
+import 'package:SmartTrolleyWebsite/View/ContactPages/ContactPage.dart';
+import 'package:SmartTrolleyWebsite/View/Featurespages/Featurespage.dart';
+import 'package:SmartTrolleyWebsite/View/Homepages/Homepage.dart';
+import 'package:SmartTrolleyWebsite/View/HowItWorkpages/HowItWorkpage.dart';
+import 'package:SmartTrolleyWebsite/View/Navigationpage/DesktopNavbar.dart';
 import 'package:flutter/material.dart';
-import 'package:samrttrollywebsite/Support/Footer.dart';
-import 'package:samrttrollywebsite/View/Benefitspage/Benefitspage.dart';
-import 'package:samrttrollywebsite/View/ContactPages/ContactPage.dart';
-import 'package:samrttrollywebsite/View/Featurespages/Featurespage.dart';
-import 'package:samrttrollywebsite/View/Homepages/Homepage.dart';
-import 'package:samrttrollywebsite/View/HowItWorkpages/HowItWorkpage.dart';
-import 'package:samrttrollywebsite/View/Navigationpage/DesktopNavbar.dart';
 
 
 class MainPage extends StatefulWidget {

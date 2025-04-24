@@ -1,6 +1,7 @@
+import 'package:SmartTrolleyWebsite/Utils/AppColors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:samrttrollywebsite/Utils/AppColors.dart';
+
 
 class NavItem extends StatefulWidget {
   final String title;

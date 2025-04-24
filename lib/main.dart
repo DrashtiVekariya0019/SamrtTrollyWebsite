@@ -1,10 +1,14 @@
+import 'package:SmartTrolleyWebsite/Utils/RouteData.dart';
+import 'package:SmartTrolleyWebsite/View/Navigationpage/GlobayKeyPage.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:samrttrollywebsite/Utils/RouteData.dart';
-import 'package:samrttrollywebsite/View/Navigationpage/GlobayKeyPage.dart';
+
+import 'package:flutter_web_plugins/flutter_web_plugins.dart';
 
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  setUrlStrategy(PathUrlStrategy());
   runApp(MyApp());
 }
 
@@ -17,7 +21,7 @@ class MyApp extends StatelessWidget {
       getPages: AppRoutes.routes,
       initialRoute: AppRoutes.splash,
       debugShowCheckedModeBanner: false,
-      title: 'Netpair Chocolet pvt ltd',
+      title: 'IoTrolley',
 
       theme: ThemeData(
         useMaterial3: true,

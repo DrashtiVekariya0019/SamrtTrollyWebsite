@@ -1,5 +1,6 @@
+import 'package:SmartTrolleyWebsite/Support/CommonTextStyle.dart';
 import 'package:flutter/material.dart';
-import 'package:samrttrollywebsite/Support/CommonTextStyle.dart';
+
 
 class CommonElevatedButton extends StatelessWidget {
   final String text;

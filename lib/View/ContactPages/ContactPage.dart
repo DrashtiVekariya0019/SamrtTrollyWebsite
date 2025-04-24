@@ -1,9 +1,10 @@
+import 'package:SmartTrolleyWebsite/Controller/ContactController.dart';
+import 'package:SmartTrolleyWebsite/Support/CommonElevatedButton.dart';
+import 'package:SmartTrolleyWebsite/Support/CommonTextStyle.dart';
+import 'package:SmartTrolleyWebsite/Utils/AppColors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:samrttrollywebsite/Controller/ContactController.dart';
-import 'package:samrttrollywebsite/Support/CommonElevatedButton.dart';
-import 'package:samrttrollywebsite/Utils/AppColors.dart';
-import 'package:samrttrollywebsite/Support/CommonTextStyle.dart';
+
 
 class ContactPage extends StatelessWidget {
   ContactPage({super.key});
@@ -41,161 +42,33 @@ class ContactPage extends StatelessWidget {
              SizedBox(height: 40),
 
 
-            Flex(
-              direction:Axis.horizontal ,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Expanded(
-                  child: Container(
-                    margin: const EdgeInsets.all(12),
-                    padding: const EdgeInsets.all(20),
-                    decoration: BoxDecoration(
-                      color: AppColors.white,
-                      boxShadow: [
-                        BoxShadow(
-                          blurRadius: 10,
-                          color: Colors.grey.withOpacity(0.2),
-                        ),
-                      ],
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    child: Form(
-                      key: _formKey,
-                      child: Column(
-                        children: [
-                          _buildValidatedTextField(
-                            "First Name",
-                            controller.firstNameController,
-                          ),
-                           SizedBox(height: 30),
-                          _buildValidatedTextField(
-                            "Last Name",
-                            controller.lastNameController,
-                          ),
-                           SizedBox(height: 30),
-                          _buildEmailTextField(
-                            "Business Email",
-                            controller.emailController,
-                          ),
-                           SizedBox(height: 30),
-                          Obx(
-                            () => DropdownButtonFormField<String>(
-                              value:
-                                  controller.selectedSubject?.value == ""
-                                      ? null
-                                      : controller.selectedSubject?.value,
-                              decoration: const InputDecoration(
-                                labelText: 'Subject',
-                                border: OutlineInputBorder(),
-                              ),
-                              validator:
-                                  (value) =>
-                                      value == null
-                                          ? 'Please select a subject'
-                                          : null,
-                              items: const [
-                                DropdownMenuItem(
-                                  value: 'Request a Demo',
-                                  child: Text('Request a Demo'),
-                                ),
-                                DropdownMenuItem(
-                                  value: 'Request a Quote',
-                                  child: Text('Request a Quote'),
-                                ),
-                                DropdownMenuItem(
-                                  value: 'Technical Support',
-                                  child: Text('Technical Support'),
-                                ),
-                                DropdownMenuItem(
-                                  value: 'Partnership Inquiry',
-                                  child: Text('Partnership Inquiry'),
-                                ),
-                                DropdownMenuItem(
-                                  value: 'Other',
-                                  child: Text('Other'),
-                                ),
-                              ],
-                              onChanged: (value) {
-                                controller.selectedSubject?.value = value!;
-                              },
-                            ),
-                          ),
+            LayoutBuilder(
+              builder: (context, constraints) {
+                // Mobile View (less than 800px width)
+                if (constraints.maxWidth < 800) {
+                  return Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      _formSection(), // 👇 Defined as a new widget
+                      const SizedBox(height: 20),
+                      _contactInfoSection(),
+                    ],
+                  );
+                }
+                // Desktop / Large Screen View
+                else {
+                  return Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Expanded(child: _formSection()),
+                      const SizedBox(width: 20),
+                      Expanded(child: _contactInfoSection()),
+                    ],
+                  );
+                }
+              },
+            )
 
-
-                           SizedBox(height: 30),
-                          _buildValidatedTextField(
-                            "Company",
-                            controller.companyController,
-                          ),
-                           SizedBox(height: 30),
-                          _buildPhoneTextField(
-                            "Phone Number",
-                            controller.phoneController,
-                          ),
-                           SizedBox(height: 30),
-                          TextFormField(
-                            controller: controller.messageController,
-                            maxLines: 7,
-                            decoration: const InputDecoration(
-                              labelText: 'Message',
-                              border: OutlineInputBorder(),
-                            ),
-                          ),
-                           SizedBox(height: 30),
-                          Obx(
-                            () => Row(
-                              children: [
-                                Checkbox(
-                                  value: controller.agreeToTerms.value,
-                                  onChanged: (value) {
-                                    controller.agreeToTerms.value =
-                                        value ?? false;
-                                  },
-                                ),
-                                Expanded(
-                                  child: RichText(
-                                    text: const TextSpan(
-                                      style: TextStyle(
-                                        fontSize: 14,
-                                        color: Colors.black,
-                                      ),
-                                      children: [
-                                        TextSpan(
-                                          text: 'I agree to receive communications about  IOTrolley products, services, and events. You can unsubscribe at any time. View our ',
-                                        ),
-                                        TextSpan(
-                                          text: ' Privacy Policy.',
-                                          style: TextStyle(
-                                            color: Colors.blue,
-                                            decoration:
-                                                TextDecoration.underline,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                           SizedBox(height: 20),
-                          CommonElevatedButton(
-                            text: "SUBMIT",
-                            onPressed: () {
-                              if (_formKey.currentState!.validate()) {
-                                controller.submitForm();
-                              }
-                            },
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
-
-                Expanded(child: _contactInfoSection()),
-              ],
-            ),
           ],
         ),
       ),
@@ -323,4 +196,146 @@ class ContactPage extends StatelessWidget {
       ],
     );
   }
+
+  Widget _formSection() {
+    return Container(
+      margin: const EdgeInsets.all(12),
+      padding: const EdgeInsets.all(20),
+      decoration: BoxDecoration(
+        color: AppColors.white,
+        boxShadow: [
+          BoxShadow(
+            blurRadius: 10,
+            color: Colors.grey.withOpacity(0.2),
+          ),
+        ],
+        borderRadius: BorderRadius.circular(12),
+      ),
+      child: Form(
+        key: _formKey,
+        child: Column(
+          children: [
+            _buildValidatedTextField(
+              "First Name",
+              controller.firstNameController,
+            ),
+            const SizedBox(height: 30),
+            _buildValidatedTextField(
+              "Last Name",
+              controller.lastNameController,
+            ),
+            const SizedBox(height: 30),
+            _buildEmailTextField(
+              "Business Email",
+              controller.emailController,
+            ),
+            const SizedBox(height: 30),
+            Obx(
+                  () => DropdownButtonFormField<String>(
+                value: controller.selectedSubject?.value == ""
+                    ? null
+                    : controller.selectedSubject?.value,
+                decoration: const InputDecoration(
+                  labelText: 'Subject',
+                  border: OutlineInputBorder(),
+                ),
+                validator: (value) =>
+                value == null ? 'Please select a subject' : null,
+                items: const [
+                  DropdownMenuItem(
+                    value: 'Request a Demo',
+                    child: Text('Request a Demo'),
+                  ),
+                  DropdownMenuItem(
+                    value: 'Request a Quote',
+                    child: Text('Request a Quote'),
+                  ),
+                  DropdownMenuItem(
+                    value: 'Technical Support',
+                    child: Text('Technical Support'),
+                  ),
+                  DropdownMenuItem(
+                    value: 'Partnership Inquiry',
+                    child: Text('Partnership Inquiry'),
+                  ),
+                  DropdownMenuItem(
+                    value: 'Other',
+                    child: Text('Other'),
+                  ),
+                ],
+                onChanged: (value) {
+                  controller.selectedSubject?.value = value!;
+                },
+              ),
+            ),
+            const SizedBox(height: 30),
+            _buildValidatedTextField(
+              "Company",
+              controller.companyController,
+            ),
+            const SizedBox(height: 30),
+            _buildPhoneTextField(
+              "Phone Number",
+              controller.phoneController,
+            ),
+            const SizedBox(height: 30),
+            TextFormField(
+              controller: controller.messageController,
+              maxLines: 7,
+              decoration: const InputDecoration(
+                labelText: 'Message',
+                border: OutlineInputBorder(),
+              ),
+            ),
+            const SizedBox(height: 30),
+            Obx(
+                  () => Row(
+                children: [
+                  Checkbox(
+                    value: controller.agreeToTerms.value,
+                    onChanged: (value) {
+                      controller.agreeToTerms.value = value ?? false;
+                    },
+                  ),
+                  Expanded(
+                    child: RichText(
+                      text: const TextSpan(
+                        style: TextStyle(
+                          fontSize: 14,
+                          color: Colors.black,
+                        ),
+                        children: [
+                          TextSpan(
+                            text:
+                            'I agree to receive communications about  IOTrolley products, services, and events. You can unsubscribe at any time. View our ',
+                          ),
+                          TextSpan(
+                            text: ' Privacy Policy.',
+                            style: TextStyle(
+                              color: Colors.blue,
+                              decoration: TextDecoration.underline,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(height: 20),
+            CommonElevatedButton(
+              text: "SUBMIT",
+              onPressed: () {
+                if (_formKey.currentState!.validate()) {
+                  controller.submitForm();
+                }
+              },
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
 }
