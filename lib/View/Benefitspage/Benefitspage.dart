@@ -57,18 +57,41 @@ class BenefitsPage extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        CommonElevatedButton(
-          text: "For Retailers",
-          onPressed: () {},
+        Container(
+          padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+          decoration: BoxDecoration(
+            color: AppColors.blue.withOpacity(0.1),
+            borderRadius: BorderRadius.circular(6),
+          ),
+          child: Text(
+            "For Retailers",
+            style: AppTextStyles.customStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.bold,
+              color: AppColors.blue,
+            ),
+          ),
         ),
         const SizedBox(width: 10),
-        CommonElevatedButton(
-          text: "For Shoppers",
-          onPressed: () {},
+        Container(
+          padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+          decoration: BoxDecoration(
+            color: AppColors.blue.withOpacity(0.1),
+            borderRadius: BorderRadius.circular(6),
+          ),
+          child: Text(
+            "For Shoppers",
+            style: AppTextStyles.customStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.bold,
+              color: AppColors.blue,
+            ),
+          ),
         ),
       ],
     );
   }
+
 
   Widget _buildMainContent() {
     return Container(
@@ -112,10 +135,10 @@ class BenefitsPage extends StatelessWidget {
           const SizedBox(height: 30),
           const Divider(height: 1),
           const SizedBox(height: 30),
-          CommonElevatedButton(
-            text: "View Success Stories",
-            onPressed: () {},
-          ),
+          // CommonElevatedButton(
+          //   text: "View Success Stories",
+          //   onPressed: () {},
+          // ),
         ],
       ),
     );
@@ -127,7 +150,7 @@ class BenefitsPage extends StatelessWidget {
       child: ClipRRect(
         borderRadius: BorderRadius.circular(12),
         child: Image.asset(
-          'assets/Images/Advance (1).png',
+          'assets/Images/benefit(1).png',
           fit: BoxFit.cover,
           height: 400,
         ),

@@ -7,7 +7,6 @@ import 'package:SmartTrolleyWebsite/View/HowItWorkpages/HowItWorkpage.dart';
 import 'package:SmartTrolleyWebsite/View/Navigationpage/DesktopNavbar.dart';
 import 'package:flutter/material.dart';
 
-
 class MainPage extends StatefulWidget {
   const MainPage({super.key});
 
@@ -38,8 +37,7 @@ class _MainPageState extends State<MainPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body:
-      Column(
+      body: Column(
         children: [
           DesktopNavbar(
             onHomeTap: () => scrollToSection(homepageKey),
@@ -53,11 +51,22 @@ class _MainPageState extends State<MainPage> {
               controller: scrollController,
               child: Column(
                 children: [
-                  Container(key: homepageKey, child: Homepage()),
-                  Container(key: featuresKey, child:  FeaturesPage()),
-                  Container(key: howItWorkKey, child:  HowItWorkPage()),
-                  Container(key: benefitsKey, child:BenefitsPage()),
-                  Container(key: contactKey, child:  ContactPage()),
+                  Container(
+                    key: homepageKey,
+                    child: Homepage(
+                      onSeeHowItWorks: () => scrollToSection(howItWorkKey),
+                      onExploreFeatures: () => scrollToSection(featuresKey),
+                    ),
+                  ),
+                  Container(
+                    key: featuresKey,
+                    child: FeaturesPage(
+                      onRequestDemoTap: () => scrollToSection(contactKey),
+                    ),
+                  ),
+                  Container(key: howItWorkKey, child: HowItWorkPage(onRequestDemoTap: () => scrollToSection(contactKey)),),
+                  Container(key: benefitsKey, child: BenefitsPage()),
+                  Container(key: contactKey, child: ContactPage()),
                   const Footer(),
                 ],
               ),
@@ -65,7 +74,6 @@ class _MainPageState extends State<MainPage> {
           ),
         ],
       ),
-
     );
   }
 }

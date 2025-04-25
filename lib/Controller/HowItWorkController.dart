@@ -6,13 +6,13 @@ class HowItWorkController extends GetxController {
       "title": "Scan & Login",
       "desc":
       "Shoppers scan a QR code or tap their loyalty card on the trolley’s built-in scanner to activate and personalize their shopping experience.",
-      "img": "assets/Images/likeboss.png",
+      "img": "assets/Images/scan&login.png",
     },
     {
       "title": "Shop & Scan",
       "desc":
       "As items are placed in the trolley, built-in cameras and weight sensors automatically detect products, adding them to your virtual cart.",
-      "img": "assets/Images/newtechnology.png",
+      "img": "assets/Images/shopandscan.jpg",
     },
     {
       "title": "Review & Modify",
@@ -24,7 +24,7 @@ class HowItWorkController extends GetxController {
       "title": "Pay & Go",
       "desc":
       "Skip the checkout line! Pay directly on the trolley using contactless payment methods and exit the store without waiting.",
-      "img": "assets/Images/likeboss.png",
+      "img": "assets/Images/payandgo.png",
     },
   ];
 }

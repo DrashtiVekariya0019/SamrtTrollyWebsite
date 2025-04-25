@@ -25,12 +25,12 @@ class AppRoutes {
     GetPage(name: home, page: () => MainPage(), transition: Transition.fadeIn),
     GetPage(
       name: features,
-      page: () => FeaturesPage(),
+      page: () => FeaturesPage(onRequestDemoTap: () {  },),
       transition: Transition.fadeIn,
     ),
     GetPage(
       name: howitwork,
-      page: () => HowItWorkPage(),
+      page: () => HowItWorkPage(onRequestDemoTap: () {  },),
       transition: Transition.fadeIn,
     ),
     GetPage(

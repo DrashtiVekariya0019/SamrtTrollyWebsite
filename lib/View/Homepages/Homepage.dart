@@ -3,7 +3,14 @@ import 'package:SmartTrolleyWebsite/Support/CommonTextStyle.dart';
 import 'package:flutter/material.dart';
 
 class Homepage extends StatelessWidget {
-  const Homepage({super.key});
+  final VoidCallback onSeeHowItWorks;
+  final VoidCallback onExploreFeatures;
+
+  const Homepage({
+    super.key,
+    required this.onSeeHowItWorks,
+    required this.onExploreFeatures,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -18,21 +25,8 @@ class Homepage extends StatelessWidget {
         ),
         child: Column(
           children: [
-            // Main Content Section
             isMobile ? buildMobileLayout(context) : buildDesktopLayout(context),
             const SizedBox(height: 60),
-            // Trusted By Section
-            Text(
-              "TRUSTED BY LEADING RETAILERS",
-              style: AppTextStyles.customStyle(
-                fontSize: 14,
-                fontWeight: FontWeight.w500,
-                color: Colors.grey,
-                letterSpacing: 1.2,
-              ),
-            ),
-            const SizedBox(height: 30),
-            buildRetailerLogos(isMobile),
           ],
         ),
       ),
@@ -103,12 +97,12 @@ class Homepage extends StatelessWidget {
       children: [
         CommonElevatedButton(
           text: "See How It Works",
-          onPressed: () {},
+          onPressed: onSeeHowItWorks,
         ),
         const SizedBox(height: 10),
         CommonElevatedButton(
           text: "Explore Features",
-          onPressed: () {},
+          onPressed: onExploreFeatures,
         ),
       ],
     )
@@ -116,12 +110,12 @@ class Homepage extends StatelessWidget {
       children: [
         CommonElevatedButton(
           text: "See How It Works",
-          onPressed: () {},
+          onPressed: onSeeHowItWorks,
         ),
         const SizedBox(width: 10),
         CommonElevatedButton(
           text: "Explore Features",
-          onPressed: () {},
+          onPressed: onExploreFeatures,
         ),
       ],
     );
@@ -134,27 +128,8 @@ class Homepage extends StatelessWidget {
         ClipRRect(
           borderRadius: BorderRadius.circular(12),
           child: Image.asset(
-            'assets/Images/newtechnology.png',
+            'assets/Images/RevolutionizeShopping.png',
             fit: BoxFit.contain,
-          ),
-        ),
-        Positioned(
-          bottom: 10,
-          left: 10,
-          child: Container(
-            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
-            decoration: BoxDecoration(
-              color: Colors.blue[800],
-              borderRadius: BorderRadius.circular(8),
-            ),
-            child: Text(
-              "New Technology\nSmart Retail Solution",
-              style: AppTextStyles.customStyle(
-                color: Colors.white,
-                fontWeight: FontWeight.bold,
-                fontSize: 15,
-              ),
-            ),
           ),
         ),
       ],
@@ -173,24 +148,8 @@ class Homepage extends StatelessWidget {
       ],
     );
   }
-
-  Widget buildRetailerLogos(bool isMobile) {
-    return Wrap(
-      alignment: WrapAlignment.center,
-      spacing: isMobile ? 20 : 40,
-      runSpacing: isMobile ? 10 : 20,
-      children: const [
-        RetailerText(name: "RETAILCO"),
-        RetailerText(name: "SMARTSHOP"),
-        RetailerText(name: "FUTUREMART"),
-        RetailerText(name: "TECHSTORE"),
-        RetailerText(name: "QUICKBUY"),
-      ],
-    );
-  }
 }
 
-// Add these widget definitions at the end of your file
 class InfoTile extends StatelessWidget {
   final String title;
   final String subtitle;
@@ -218,7 +177,7 @@ class InfoTile extends StatelessWidget {
           style: AppTextStyles.customStyle(
             fontSize: 16,
             color: Colors.black87,
-            fontWeight: FontWeight.normal
+            fontWeight: FontWeight.normal,
           ),
         ),
       ],

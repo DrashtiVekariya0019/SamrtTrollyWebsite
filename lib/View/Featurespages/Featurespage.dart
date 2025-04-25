@@ -5,9 +5,11 @@ import 'package:SmartTrolleyWebsite/Utils/AppColors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-
 class FeaturesPage extends StatelessWidget {
-  FeaturesPage({super.key});
+  final VoidCallback onRequestDemoTap; // <-- New parameter
+
+  FeaturesPage({super.key, required this.onRequestDemoTap});
+
   final FeaturesController controller = Get.put(FeaturesController());
 
   @override
@@ -17,7 +19,7 @@ class FeaturesPage extends StatelessWidget {
         child: Column(
           children: [
             SizedBox(height: 40),
-             Text(
+            Text(
               "Features",
               style: AppTextStyles.customStyle(
                 fontSize: 32,
@@ -36,54 +38,48 @@ class FeaturesPage extends StatelessWidget {
               spacing: 20,
               runSpacing: 20,
               alignment: WrapAlignment.center,
-              children:
-                  controller.features
-                      .map(
-                        (feature) => SizedBox(
-                          width: 420,
-                          child: Card(
-                            elevation: 3,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(12),
-                            ),
-                            child: Padding(
-                              padding: const EdgeInsets.all(16.0),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  CircleAvatar(
-                                    radius: 20,
-                                    backgroundColor: Colors.blue.shade50,
-                                    child: Icon(
-                                      feature.icon,
-                                      color: AppColors.blue,
-                                    ),
-                                  ),
-                                  const SizedBox(height: 10),
-                                  Text(
-                                    feature.title,
-                                    style: const TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                  const SizedBox(height: 8),
-                                  Text(
-                                    feature.description,
-                                    style: const TextStyle(fontSize: 14),
-                                  ),
-                                  const SizedBox(height: 12),
-                                  TextButton(
-                                    onPressed: () {},
-                                    child: const Text("Learn More"),
-                                  ),
-                                ],
-                              ),
+              children: controller.features
+                  .map(
+                    (feature) => SizedBox(
+                  width: 420,
+                  child: Card(
+                    elevation: 3,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          CircleAvatar(
+                            radius: 20,
+                            backgroundColor: Colors.blue.shade50,
+                            child: Icon(
+                              feature.icon,
+                              color: AppColors.blue,
                             ),
                           ),
-                        ),
-                      )
-                      .toList(),
+                          const SizedBox(height: 10),
+                          Text(
+                            feature.title,
+                            style: const TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          const SizedBox(height: 8),
+                          Text(
+                            feature.description,
+                            style: const TextStyle(fontSize: 14),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              )
+                  .toList(),
             ),
             const SizedBox(height: 40),
             Container(
@@ -92,7 +88,6 @@ class FeaturesPage extends StatelessWidget {
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  // Left side - All text content
                   Expanded(
                     child: Container(
                       padding: const EdgeInsets.only(right: 40),
@@ -123,23 +118,20 @@ class FeaturesPage extends StatelessWidget {
                           const SizedBox(height: 30),
                           SizedBox(
                             width: 200,
-                            child:  CommonElevatedButton(
-                              text: "See Analytics Demo",
-                              onPressed: () {
-                              },
+                            child: CommonElevatedButton(
+                              text: "Request a Demo",
+                              onPressed: onRequestDemoTap, // <-- Scroll action
                             ),
                           ),
                         ],
                       ),
                     ),
                   ),
-
-                  // Right side - Image
                   Expanded(
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(12),
                       child: Image.asset(
-                        'assets/Images/Advance (1).png',
+                        'assets/Images/AdvancedAnalyticsDashboard.jpg',
                         fit: BoxFit.cover,
                         height: 400,
                       ),

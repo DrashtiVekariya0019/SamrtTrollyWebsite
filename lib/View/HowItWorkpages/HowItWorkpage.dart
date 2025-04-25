@@ -6,7 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class HowItWorkPage extends StatelessWidget {
-  HowItWorkPage({super.key});
+  final VoidCallback onRequestDemoTap;
+  HowItWorkPage({super.key, required this.onRequestDemoTap});
 
   final HowItWorkController controller = Get.put(HowItWorkController());
 
@@ -76,16 +77,10 @@ class HowItWorkPage extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 CommonElevatedButton(
-                  text: "Schedule a Demo",
-                  onPressed: () {
-                  },
+                  text: "Request a Demo",
+                  onPressed: onRequestDemoTap,
                 ),
-                const SizedBox(width: 10),
-                CommonElevatedButton(
-                  text: "View Case Studies",
-                  onPressed: () {
-                  },
-                ),
+
               ],
             ),
             const SizedBox(height: 40),

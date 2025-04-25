@@ -172,7 +172,7 @@ class ContactPage extends StatelessWidget {
           ClipRRect(
             borderRadius: BorderRadius.circular(12),
             child: Image.asset(
-              'assets/Images/newtechnology.png',
+              'assets/Images/contact.png',
               fit: BoxFit.cover,
               height: 400,
             ),
