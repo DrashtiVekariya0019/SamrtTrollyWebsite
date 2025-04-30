@@ -26,55 +26,28 @@ class DesktopNavbar extends StatelessWidget {
         return Container(
           color: Colors.blue[800],
           padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 20),
-          child: Stack(
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Positioned(
-                left: 30,
-                child: Text(
-                  'IoTrolley',
-                  style: AppTextStyles.customStyle(
-                    color: AppColors.white,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 20,
-                  ),
-                ),
-              ),
-              Align(
-                alignment: Alignment.center,
-                child: isMobile
-                    ? Column( // Stack items vertically for smaller screens
+              Flexible(
+                  child: SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    _navItem("Home", onTap: onHomeTap),
-                    _navItem("Features", onTap: onFeaturesTap),
-                    _navItem("How It Works", onTap: onHowItWorksTap),
-                    _navItem("Benefits", onTap: onBenefitsTap),
-                    const SizedBox(height: 16),
-                    ElevatedButton(
-                      onPressed: onContactTap,
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.green,
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 20,
-                          vertical: 5,
-                        ),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.zero,
-                        ),
-                      ),
-                      child: Text(
-                        'Contact',
-                        style: AppTextStyles.customStyle(
-                          color: Colors.white,
-                          fontSize: 15,
-                          fontWeight: FontWeight.bold,
-                        ),
+                    Text(
+                      'IoTrolley',
+                      style: AppTextStyles.customStyle(
+                        color: AppColors.white,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 20,
                       ),
                     ),
-                  ],
-                )
-                    : Row( // Keep items in a row for larger screens
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
+                    SizedBox(
+                      width: 150,
+                    ),
                     _navItem("Home", onTap: onHomeTap),
                     _navItem("Features", onTap: onFeaturesTap),
                     _navItem("How It Works", onTap: onHowItWorksTap),
@@ -100,10 +73,10 @@ class DesktopNavbar extends StatelessWidget {
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-                    ),
+                    )
                   ],
                 ),
-              ),
+              ))
             ],
           ),
         );
