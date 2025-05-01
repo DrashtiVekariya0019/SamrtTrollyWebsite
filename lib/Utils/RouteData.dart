@@ -1,3 +1,4 @@
+import 'package:SmartTrolleyWebsite/View/Authentication/SignUpPage.dart';
 import 'package:SmartTrolleyWebsite/View/Benefitspage/Benefitspage.dart';
 import 'package:SmartTrolleyWebsite/View/ContactPages/ContactPage.dart';
 import 'package:SmartTrolleyWebsite/View/Featurespages/Featurespage.dart';
@@ -14,6 +15,8 @@ class AppRoutes {
   static const String howitwork='/howitwork';
   static const String benefits='/benefits';
   static const String  contacts='/contacts';
+  static const String  signup='/signup';
+
 
 
   static List<GetPage> routes = [
@@ -41,6 +44,11 @@ class AppRoutes {
     GetPage(
       name: contacts,
       page: () => ContactPage(),
+      transition: Transition.fadeIn,
+    ),
+    GetPage(
+      name: signup,
+      page: () => SignUpPage(),
       transition: Transition.fadeIn,
     ),
   ];

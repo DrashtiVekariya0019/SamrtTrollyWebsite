@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:SmartTrolleyWebsite/Support/SnckbarHelper.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
@@ -58,17 +59,18 @@ class ContactController extends GetxController {
         }),
       );
 
-      if (response.statusCode == 200) {
-        Get.snackbar("Success", "Email sent successfully.");
-        clearForm();
-      } else {
-        print('Email error: ${response.body}');
-        Get.snackbar("Error", "Failed to send email.");
+
+        if (response.statusCode == 200) {
+          SnackbarHelper.showSuccess("Email sent successfully.");
+          clearForm();
+        } else {
+          print('Email error: ${response.body}');
+          SnackbarHelper.showError("Failed to send email.");
+        }
+      } catch (e) {
+        print("Exception: $e");
+        SnackbarHelper.showError("Something went wrong.");
       }
-    } catch (e) {
-      print("Exception: $e");
-      Get.snackbar("Error", "Something went wrong.");
-    }
   }
 
   void clearForm() {

@@ -18,6 +18,7 @@ class MobileDrawer extends StatelessWidget {
           DrawerItem(title: 'How It Works', onTap: () {}),
           DrawerItem(title: 'Benefits', onTap: () {}),
           DrawerItem(title: 'Contact', onTap: () {}),
+          DrawerItem(title: 'Sign Up', onTap: () {}),
         ],
       ),
     );

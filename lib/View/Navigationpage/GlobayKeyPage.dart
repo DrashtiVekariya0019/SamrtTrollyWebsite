@@ -1,4 +1,5 @@
 import 'package:SmartTrolleyWebsite/Support/Footer.dart';
+import 'package:SmartTrolleyWebsite/Utils/RouteData.dart';
 import 'package:SmartTrolleyWebsite/View/Benefitspage/Benefitspage.dart';
 import 'package:SmartTrolleyWebsite/View/ContactPages/ContactPage.dart';
 import 'package:SmartTrolleyWebsite/View/Featurespages/Featurespage.dart';
@@ -6,6 +7,7 @@ import 'package:SmartTrolleyWebsite/View/Homepages/Homepage.dart';
 import 'package:SmartTrolleyWebsite/View/HowItWorkpages/HowItWorkpage.dart';
 import 'package:SmartTrolleyWebsite/View/Navigationpage/DesktopNavbar.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({super.key});
@@ -20,6 +22,7 @@ class _MainPageState extends State<MainPage> {
   final howItWorkKey = GlobalKey();
   final benefitsKey = GlobalKey();
   final contactKey = GlobalKey();
+  final signupkey=GlobalKey();
 
   final scrollController = ScrollController();
 
@@ -95,6 +98,13 @@ class _MainPageState extends State<MainPage> {
                       Navigator.pop(context);
                     },
                   ),
+                  ListTile(
+                    title: const Text('Sign Up'),
+                    onTap: () {
+                      Navigator.pop(context);
+                      Get.toNamed(AppRoutes.signup);
+                    },
+                  ),
                 ],
               ),
             )
@@ -109,6 +119,7 @@ class _MainPageState extends State<MainPage> {
               onHowItWorksTap: () => scrollToSection(howItWorkKey),
               onBenefitsTap: () => scrollToSection(benefitsKey),
               onContactTap: () => scrollToSection(contactKey),
+              onSignUpTap: () => Get.toNamed(AppRoutes.signup),
             ),
           Expanded(
             child: SingleChildScrollView(
