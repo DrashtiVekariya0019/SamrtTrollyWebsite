@@ -26,7 +26,7 @@ class DesktopNavbar extends StatelessWidget {
   Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (context, constraints) {
-        bool isMobile = constraints.maxWidth < 600;
+        // bool isMobile = constraints.maxWidth < 600;
         return Container(
           color: Colors.blue[800],
           padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 20),
@@ -85,7 +85,9 @@ class DesktopNavbar extends StatelessWidget {
               ),
 
               // Right Side: Sign Up
-              Expanded(
+
+              //ADD The Button
+              Flexible(
                 flex: 1,
                 child: Align(
                   alignment: Alignment.centerRight,
