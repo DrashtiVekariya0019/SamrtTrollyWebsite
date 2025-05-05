@@ -4,7 +4,7 @@ import 'package:SmartTrolleyWebsite/Support/CommonTextStyle.dart';
 import 'package:SmartTrolleyWebsite/Support/Footer.dart';
 import 'package:SmartTrolleyWebsite/Utils/AppColors.dart';
 
-import 'package:SmartTrolleyWebsite/View/Navigationpage/Appbar.dart'; // Import Appbar component
+import 'package:SmartTrolleyWebsite/View/Navigationpage/Appbar.dart';
 import 'package:SmartTrolleyWebsite/View/Navigationpage/DesktopNavbar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -18,6 +18,8 @@ class SignUpPageContent extends StatefulWidget {
 class _SignUpPageContentState extends State<SignUpPageContent> {
   final SignupController controller = Get.put(SignupController());
   final _formKey = GlobalKey<FormState>();
+  // Add autovalidateMode state
+  AutovalidateMode _autoValidateMode = AutovalidateMode.disabled;
 
   @override
   Widget build(BuildContext context) {
@@ -61,6 +63,8 @@ class _SignUpPageContentState extends State<SignUpPageContent> {
                         constraints: BoxConstraints(maxWidth: 500),
                         child: Form(
                           key: _formKey,
+                          // Add autovalidateMode to form
+                          autovalidateMode: _autoValidateMode,
                           child: Column(
                             children: [
                               _buildValidatedTextField(
@@ -75,6 +79,7 @@ class _SignUpPageContentState extends State<SignUpPageContent> {
                               SizedBox(height: 20),
                               _buildPhoneTextField(
                                 "Mobile Number",
+
                                 controller.phoneController,
                               ),
                               SizedBox(height: 30),
@@ -83,6 +88,11 @@ class _SignUpPageContentState extends State<SignUpPageContent> {
                                 onPressed: () {
                                   if (_formKey.currentState!.validate()) {
                                     controller.submitForm();
+                                  } else {
+                                    // Enable auto validation after first submit attempt
+                                    setState(() {
+                                      _autoValidateMode = AutovalidateMode.onUserInteraction;
+                                    });
                                   }
                                 },
                               ),
@@ -112,6 +122,12 @@ class _SignUpPageContentState extends State<SignUpPageContent> {
         labelText: label,
         border: const OutlineInputBorder(),
       ),
+      // Add onChanged to revalidate as user types
+      onChanged: (value) {
+        if (_autoValidateMode == AutovalidateMode.onUserInteraction) {
+          _formKey.currentState?.validate();
+        }
+      },
       validator: (value) => value == null || value.isEmpty ? 'Please enter $label' : null,
     );
   }
@@ -123,6 +139,12 @@ class _SignUpPageContentState extends State<SignUpPageContent> {
         labelText: label,
         border: const OutlineInputBorder(),
       ),
+      // Add onChanged to revalidate as user types
+      onChanged: (value) {
+        if (_autoValidateMode == AutovalidateMode.onUserInteraction) {
+          _formKey.currentState?.validate();
+        }
+      },
       validator: (value) {
         if (value == null || value.isEmpty) {
           return 'Please enter $label';
@@ -144,6 +166,12 @@ class _SignUpPageContentState extends State<SignUpPageContent> {
         labelText: label,
         border: const OutlineInputBorder(),
       ),
+      // Add onChanged to revalidate as user types
+      onChanged: (value) {
+        if (_autoValidateMode == AutovalidateMode.onUserInteraction) {
+          _formKey.currentState?.validate();
+        }
+      },
       validator: (value) {
         if (value == null || value.isEmpty) {
           return 'Please enter $label';

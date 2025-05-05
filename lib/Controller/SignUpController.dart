@@ -22,14 +22,14 @@ class SignupController extends GetxController {
 
     try {
       int phoneNumber = int.parse(phone);
-      final response = await _apiFunction.createClientRequest(nameController.text.toString(), email, phoneNumber);
+      final response = await _apiFunction.createClientRequest(name, email, phoneNumber);
 
       if (response != null && response['status'] == 201) {
         print("responseee${response['status']}");
-        SnackbarHelper.showErrorWithTitle("Success", response['message'] ?? "Request submitted!");
+        SnackbarHelper.showSuccessWithTitle("Success", response['message'] ?? "Request submitted!");
         clearForm();
       } else {
-        SnackbarHelper.showErrorWithTitle("Error", response['message'] ?? "Something went wrong");
+        SnackbarHelper.showErrorWithTitle("Error", response['message'] ?? "Email already exist");
       }
     } catch (e) {
       SnackbarHelper.showErrorWithTitle("Exception", "Invalid input or server error: ${e.toString()}");

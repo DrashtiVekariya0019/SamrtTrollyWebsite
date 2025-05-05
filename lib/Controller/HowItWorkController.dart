@@ -6,7 +6,7 @@ class HowItWorkController extends GetxController {
       "title": "Scan & Login",
       "desc":
       "Shoppers scan a QR code or tap their loyalty card on the trolley’s built-in scanner to activate and personalize their shopping experience.",
-      "img": "assets/Images/scan&login.png",
+      "img": "assets/Images/scanlogin.png",
     },
     {
       "title": "Shop & Scan",

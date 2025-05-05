@@ -58,7 +58,7 @@ class SnackbarHelper {
     Get.snackbar(
       title,
       message,
-      backgroundColor: Colors.green,
+      backgroundColor: Colors.red,
       colorText: Colors.white,
       margin: const EdgeInsets.symmetric(horizontal: 50, vertical: 10),
       padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
