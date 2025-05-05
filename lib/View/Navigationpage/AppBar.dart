@@ -17,6 +17,7 @@ class Appbar extends StatelessWidget {
           // 🔹 Mobile View — Keep AppBar
           return Scaffold(
             appBar: AppBar(
+
               backgroundColor: AppColors.white,
               elevation: 0,
               title: Text(
