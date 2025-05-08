@@ -26,10 +26,14 @@ class DesktopNavbar extends StatelessWidget {
   Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (context, constraints) {
-        // bool isMobile = constraints.maxWidth < 600;
+        bool isSmallDesktop = constraints.maxWidth < 1000;
+
         return Container(
           color: Colors.blue[800],
-          padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 20),
+          padding: EdgeInsets.symmetric(
+              horizontal: isSmallDesktop ? 16 : 32,
+              vertical: 20
+          ),
           child: Row(
             children: [
               // Left Side: Logo
@@ -50,43 +54,44 @@ class DesktopNavbar extends StatelessWidget {
 
               // Center: Menu Items
               Expanded(
-                flex: 2,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    _navItem("Home", onTap: onHomeTap),
-                    _navItem("Features", onTap: onFeaturesTap),
-                    _navItem("How It Works", onTap: onHowItWorksTap),
-                    _navItem("Benefits", onTap: onBenefitsTap),
-                    const SizedBox(width: 12),
-                    ElevatedButton(
-                      onPressed: onContactTap,
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.green,
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 20,
-                          vertical: 5,
+                flex: isSmallDesktop ? 3 : 2,
+                child: FittedBox(
+                  fit: BoxFit.scaleDown,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      _navItem("Home", onTap: onHomeTap),
+                      _navItem("Features", onTap: onFeaturesTap),
+                      _navItem("How It Works", onTap: onHowItWorksTap),
+                      _navItem("Benefits", onTap: onBenefitsTap),
+                      SizedBox(width: isSmallDesktop ? 6 : 12),
+                      ElevatedButton(
+                        onPressed: onContactTap,
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.green,
+                          padding: EdgeInsets.symmetric(
+                            horizontal: isSmallDesktop ? 10 : 20,
+                            vertical: 5,
+                          ),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(4),
+                          ),
                         ),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.zero,
+                        child: Text(
+                          'Contact',
+                          style: AppTextStyles.customStyle(
+                            color: Colors.white,
+                            fontSize: isSmallDesktop ? 14 : 15,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                       ),
-                      child: Text(
-                        'Contact',
-                        style: AppTextStyles.customStyle(
-                          color: Colors.white,
-                          fontSize: 15,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
 
               // Right Side: Sign Up
-
-              //ADD The Button
               Flexible(
                 flex: 1,
                 child: Align(
@@ -103,7 +108,7 @@ class DesktopNavbar extends StatelessWidget {
 
   Widget _navItem(String title, {required VoidCallback onTap}) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 12),
+      padding: const EdgeInsets.symmetric(horizontal: 8),
       child: InkWell(
         onTap: onTap,
         hoverColor: Colors.transparent,
@@ -122,7 +127,7 @@ class DesktopNavbar extends StatelessWidget {
 
   Widget _signUpNavItem(String title, {required VoidCallback onTap}) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 12),
+      padding: const EdgeInsets.symmetric(horizontal: 8),
       child: MouseRegion(
         cursor: SystemMouseCursors.click,
         onEnter: (_) => _isHovering.value = true,

@@ -88,8 +88,10 @@ class _SignUpPageContentState extends State<SignUpPageContent> {
                                 onPressed: () {
                                   if (_formKey.currentState!.validate()) {
                                     controller.submitForm();
+                                    setState(() {
+                                      _autoValidateMode = AutovalidateMode.disabled; // RESET HERE after success
+                                    });
                                   } else {
-                                    // Enable auto validation after first submit attempt
                                     setState(() {
                                       _autoValidateMode = AutovalidateMode.onUserInteraction;
                                     });

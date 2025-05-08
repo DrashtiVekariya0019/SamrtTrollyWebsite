@@ -14,29 +14,32 @@ class Appbar extends StatelessWidget {
     return LayoutBuilder(
       builder: (context, constraints) {
         if (constraints.maxWidth < 800) {
-          // 🔹 Mobile View — Keep AppBar
+          // 🔹 Mobile View — Keep AppBar but fix styling
           return Scaffold(
-            appBar: AppBar(
-
-              backgroundColor: AppColors.white,
-              elevation: 0,
-              title: Text(
-                'IOTrolley',
-                style: AppTextStyles.customStyle(
-                  color: AppColors.black,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 20,
+            appBar: PreferredSize(
+              preferredSize: Size.fromHeight(56), // Standard AppBar height
+              child: AppBar(
+                backgroundColor: Colors.blue[800], // Match desktop navbar color
+                elevation: 0,
+                title: Text(
+                  'IoTrolley',
+                  style: AppTextStyles.customStyle(
+                    color: AppColors.white, // Use white for better contrast
+                    fontWeight: FontWeight.bold,
+                    fontSize: 20,
+                  ),
                 ),
+                centerTitle: false,
+                iconTheme: IconThemeData(color: AppColors.white),
               ),
-              iconTheme:  IconThemeData(color: AppColors.black),
             ),
             drawer: Drawer(
               child: MobileDrawer(),
             ),
-            body: body,
+            body: SafeArea(child: body), // Use SafeArea to prevent content from going under status bar
           );
         } else {
-
+          // 🔹 Desktop View
           return body;
         }
       },

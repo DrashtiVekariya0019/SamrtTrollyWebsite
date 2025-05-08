@@ -6,11 +6,18 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 
-class ContactPage extends StatelessWidget {
+class ContactPage extends StatefulWidget {
   ContactPage({super.key});
 
+  @override
+  State<ContactPage> createState() => _ContactPageState();
+}
+
+class _ContactPageState extends State<ContactPage> {
   final ContactController controller = Get.put(ContactController());
   final _formKey = GlobalKey<FormState>();
+
+  AutovalidateMode _autoValidateMode = AutovalidateMode.disabled;
 
   @override
   Widget build(BuildContext context) {
@@ -39,24 +46,19 @@ class ContactPage extends StatelessWidget {
                 color: AppColors.black,
               ),
             ),
-             SizedBox(height: 40),
-
-
+            const SizedBox(height: 40),
             LayoutBuilder(
               builder: (context, constraints) {
-                // Mobile View (less than 800px width)
                 if (constraints.maxWidth < 800) {
                   return Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      _formSection(), // 👇 Defined as a new widget
+                      _formSection(),
                       const SizedBox(height: 20),
                       _contactInfoSection(),
                     ],
                   );
-                }
-                // Desktop / Large Screen View
-                else {
+                } else {
                   return Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -67,24 +69,27 @@ class ContactPage extends StatelessWidget {
                   );
                 }
               },
-            )
-
+            ),
           ],
         ),
       ),
     );
   }
 
-  Widget _buildValidatedTextField(
-    String label,
-    TextEditingController controller,
-  ) {
+  // Updated Fields with onChanged and autovalidateMode
+  Widget _buildValidatedTextField(String label, TextEditingController controller) {
     return TextFormField(
       controller: controller,
+      autovalidateMode: _autoValidateMode,
       decoration: InputDecoration(
         labelText: label,
         border: const OutlineInputBorder(),
       ),
+      onChanged: (value) {
+        if (_autoValidateMode == AutovalidateMode.onUserInteraction) {
+          _formKey.currentState?.validate();
+        }
+      },
       validator: (value) => value == null || value.isEmpty ? 'Please enter $label' : null,
     );
   }
@@ -92,16 +97,20 @@ class ContactPage extends StatelessWidget {
   Widget _buildEmailTextField(String label, TextEditingController controller) {
     return TextFormField(
       controller: controller,
+      autovalidateMode: _autoValidateMode,
       decoration: InputDecoration(
         labelText: label,
         border: const OutlineInputBorder(),
       ),
+      onChanged: (value) {
+        if (_autoValidateMode == AutovalidateMode.onUserInteraction) {
+          _formKey.currentState?.validate();
+        }
+      },
       validator: (value) {
         if (value == null || value.isEmpty) {
           return 'Please enter $label';
-        } else if (!RegExp(
-          r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$',
-        ).hasMatch(value)) {
+        } else if (!RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$').hasMatch(value)) {
           return 'Please enter a valid email';
         }
         return null;
@@ -109,15 +118,20 @@ class ContactPage extends StatelessWidget {
     );
   }
 
-
   Widget _buildPhoneTextField(String label, TextEditingController controller) {
     return TextFormField(
       controller: controller,
       keyboardType: TextInputType.phone,
+      autovalidateMode: _autoValidateMode,
       decoration: InputDecoration(
         labelText: label,
         border: const OutlineInputBorder(),
       ),
+      onChanged: (value) {
+        if (_autoValidateMode == AutovalidateMode.onUserInteraction) {
+          _formKey.currentState?.validate();
+        }
+      },
       validator: (value) {
         if (value == null || value.isEmpty) {
           return 'Please enter $label';
@@ -129,8 +143,119 @@ class ContactPage extends StatelessWidget {
     );
   }
 
+  Widget _formSection() {
+    return Container(
+      margin: const EdgeInsets.all(12),
+      padding: const EdgeInsets.all(20),
+      decoration: BoxDecoration(
+        color: AppColors.white,
+        boxShadow: [
+          BoxShadow(blurRadius: 10, color: Colors.grey.withOpacity(0.2)),
+        ],
+        borderRadius: BorderRadius.circular(12),
+      ),
+      child: Form(
+        key: _formKey,
+        autovalidateMode: _autoValidateMode,
+        child: Column(
+          children: [
+            _buildValidatedTextField("First Name", controller.firstNameController),
+            const SizedBox(height: 30),
+            _buildValidatedTextField("Last Name", controller.lastNameController),
+            const SizedBox(height: 30),
+            _buildEmailTextField("Business Email", controller.emailController),
+            const SizedBox(height: 30),
+            Obx(() => DropdownButtonFormField<String>(
+              value: controller.selectedSubject?.value == "" ? null : controller.selectedSubject?.value,
+              decoration: const InputDecoration(
+                labelText: 'Subject',
+                border: OutlineInputBorder(),
+              ),
+              validator: (value) => value == null ? 'Please select a subject' : null,
+              items: const [
+                DropdownMenuItem(value: 'Request a Demo', child: Text('Request a Demo')),
+                DropdownMenuItem(value: 'Request a Quote', child: Text('Request a Quote')),
+                DropdownMenuItem(value: 'Technical Support', child: Text('Technical Support')),
+                DropdownMenuItem(value: 'Partnership Inquiry', child: Text('Partnership Inquiry')),
+                DropdownMenuItem(value: 'Other', child: Text('Other')),
+              ],
+              onChanged: (value) {
+                controller.selectedSubject?.value = value!;
+              },
+            )),
+            const SizedBox(height: 30),
+            _buildValidatedTextField("Company", controller.companyController),
+            const SizedBox(height: 30),
+            _buildPhoneTextField("Phone Number", controller.phoneController),
+            const SizedBox(height: 30),
+            TextFormField(
+              controller: controller.messageController,
+              maxLines: 7,
+              autovalidateMode: _autoValidateMode,
+              decoration: const InputDecoration(
+                labelText: 'Message',
+                border: OutlineInputBorder(),
+              ),
+              onChanged: (value) {
+                if (_autoValidateMode == AutovalidateMode.onUserInteraction) {
+                  _formKey.currentState?.validate();
+                }
+              },
+            ),
+            const SizedBox(height: 30),
+            Obx(() => Row(
+              children: [
+                Checkbox(
+                  value: controller.agreeToTerms.value,
+                  onChanged: (value) {
+                    controller.agreeToTerms.value = value ?? false;
+                  },
+                ),
+                Expanded(
+                  child: RichText(
+                    text: const TextSpan(
+                      style: TextStyle(fontSize: 14, color: Colors.black),
+                      children: [
+                        TextSpan(
+                          text: 'I agree to receive communications about IOTrolley products, services, and events. You can unsubscribe at any time. View our ',
+                        ),
+                        TextSpan(
+                          text: ' Privacy Policy.',
+                          style: TextStyle(
+                            color: Colors.blue,
+                            decoration: TextDecoration.underline,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            )),
+            const SizedBox(height: 20),
+            CommonElevatedButton(
+              text: "SUBMIT",
+              onPressed: () {
+                if (_formKey.currentState!.validate()) {
+                  controller.submitForm();
+                  setState(() {
+                    _autoValidateMode = AutovalidateMode.disabled;
+                  });
+                } else {
+                  setState(() {
+                    _autoValidateMode = AutovalidateMode.onUserInteraction;
+                  });
+                }
+              },
+            ),
+          ],
+        ),
+      ),
+    );
+  }
 
   Widget _contactInfoSection() {
+    // unchanged...
     return Container(
       margin: const EdgeInsets.all(12),
       padding: const EdgeInsets.all(20),
@@ -196,146 +321,4 @@ class ContactPage extends StatelessWidget {
       ],
     );
   }
-
-  Widget _formSection() {
-    return Container(
-      margin: const EdgeInsets.all(12),
-      padding: const EdgeInsets.all(20),
-      decoration: BoxDecoration(
-        color: AppColors.white,
-        boxShadow: [
-          BoxShadow(
-            blurRadius: 10,
-            color: Colors.grey.withOpacity(0.2),
-          ),
-        ],
-        borderRadius: BorderRadius.circular(12),
-      ),
-      child: Form(
-        key: _formKey,
-        child: Column(
-          children: [
-            _buildValidatedTextField(
-              "First Name",
-              controller.firstNameController,
-            ),
-            const SizedBox(height: 30),
-            _buildValidatedTextField(
-              "Last Name",
-              controller.lastNameController,
-            ),
-            const SizedBox(height: 30),
-            _buildEmailTextField(
-              "Business Email",
-              controller.emailController,
-            ),
-            const SizedBox(height: 30),
-            Obx(
-                  () => DropdownButtonFormField<String>(
-                value: controller.selectedSubject?.value == ""
-                    ? null
-                    : controller.selectedSubject?.value,
-                decoration: const InputDecoration(
-                  labelText: 'Subject',
-                  border: OutlineInputBorder(),
-                ),
-                validator: (value) =>
-                value == null ? 'Please select a subject' : null,
-                items: const [
-                  DropdownMenuItem(
-                    value: 'Request a Demo',
-                    child: Text('Request a Demo'),
-                  ),
-                  DropdownMenuItem(
-                    value: 'Request a Quote',
-                    child: Text('Request a Quote'),
-                  ),
-                  DropdownMenuItem(
-                    value: 'Technical Support',
-                    child: Text('Technical Support'),
-                  ),
-                  DropdownMenuItem(
-                    value: 'Partnership Inquiry',
-                    child: Text('Partnership Inquiry'),
-                  ),
-                  DropdownMenuItem(
-                    value: 'Other',
-                    child: Text('Other'),
-                  ),
-                ],
-                onChanged: (value) {
-                  controller.selectedSubject?.value = value!;
-                },
-              ),
-            ),
-            const SizedBox(height: 30),
-            _buildValidatedTextField(
-              "Company",
-              controller.companyController,
-            ),
-            const SizedBox(height: 30),
-            _buildPhoneTextField(
-              "Phone Number",
-              controller.phoneController,
-            ),
-            const SizedBox(height: 30),
-            TextFormField(
-              controller: controller.messageController,
-              maxLines: 7,
-              decoration: const InputDecoration(
-                labelText: 'Message',
-                border: OutlineInputBorder(),
-              ),
-            ),
-            const SizedBox(height: 30),
-            Obx(
-                  () => Row(
-                children: [
-                  Checkbox(
-                    value: controller.agreeToTerms.value,
-                    onChanged: (value) {
-                      controller.agreeToTerms.value = value ?? false;
-                    },
-                  ),
-                  Expanded(
-                    child: RichText(
-                      text: const TextSpan(
-                        style: TextStyle(
-                          fontSize: 14,
-                          color: Colors.black,
-                        ),
-                        children: [
-                          TextSpan(
-                            text:
-                            'I agree to receive communications about  IOTrolley products, services, and events. You can unsubscribe at any time. View our ',
-                          ),
-                          TextSpan(
-                            text: ' Privacy Policy.',
-                            style: TextStyle(
-                              color: Colors.blue,
-                              decoration: TextDecoration.underline,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            const SizedBox(height: 20),
-            CommonElevatedButton(
-              text: "SUBMIT",
-              onPressed: () {
-                if (_formKey.currentState!.validate()) {
-                  controller.submitForm();
-                }
-              },
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
 }
