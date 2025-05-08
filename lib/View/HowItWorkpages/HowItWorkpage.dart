@@ -7,6 +7,7 @@ import 'package:get/get.dart';
 
 class HowItWorkPage extends StatelessWidget {
   final VoidCallback onRequestDemoTap;
+
   HowItWorkPage({super.key, required this.onRequestDemoTap});
 
   final HowItWorkController controller = Get.put(HowItWorkController());
@@ -15,7 +16,7 @@ class HowItWorkPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Center(
-         child: Column(
+        child: Column(
           children: [
             const SizedBox(height: 40),
             Text(
@@ -40,7 +41,8 @@ class HowItWorkPage extends StatelessWidget {
               final isEven = index % 2 == 0;
 
               return Padding(
-                padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 16),
+                padding:
+                    const EdgeInsets.symmetric(vertical: 30, horizontal: 16),
                 child: LayoutBuilder(
                   builder: (context, constraints) {
                     return Row(
@@ -48,15 +50,19 @@ class HowItWorkPage extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: isEven
                           ? [
-                        Flexible(flex: 1, child: stepText(context, index, step)),
-                        const SizedBox(width: 20),
-                        Flexible(flex: 1, child: stepImage(step["img"]!)),
-                      ]
+                              Flexible(
+                                  flex: 1,
+                                  child: stepText(context, index, step)),
+                              const SizedBox(width: 20),
+                              Flexible(flex: 1, child: stepImage(step["img"]!)),
+                            ]
                           : [
-                        Flexible(flex: 1, child: stepImage(step["img"]!)),
-                        const SizedBox(width: 20),
-                        Flexible(flex: 1, child: stepText(context, index, step)),
-                      ],
+                              Flexible(flex: 1, child: stepImage(step["img"]!)),
+                              const SizedBox(width: 20),
+                              Flexible(
+                                  flex: 1,
+                                  child: stepText(context, index, step)),
+                            ],
                     );
                   },
                 ),
@@ -80,13 +86,12 @@ class HowItWorkPage extends StatelessWidget {
                   text: "Request a Demo",
                   onPressed: onRequestDemoTap,
                 ),
-
               ],
             ),
             const SizedBox(height: 40),
           ],
-               ),
-       ),
+        ),
+      ),
     );
   }
 
@@ -100,7 +105,7 @@ class HowItWorkPage extends StatelessWidget {
           child: Text(
             "${index + 1}",
             style: AppTextStyles.customStyle(
-              color:AppColors.white,
+              color: AppColors.white,
               fontWeight: FontWeight.bold,
               fontSize: 30,
             ),
@@ -110,9 +115,9 @@ class HowItWorkPage extends StatelessWidget {
         Text(
           step["title"],
           style: Theme.of(context).textTheme.titleMedium?.copyWith(
-            fontWeight: FontWeight.bold,
-            fontSize: 20,
-          ),
+                fontWeight: FontWeight.bold,
+                fontSize: 20,
+              ),
         ),
         const SizedBox(height: 8),
         Text(
@@ -154,21 +159,22 @@ class HowItWorkPage extends StatelessWidget {
                         "Shows recommended items based on previous purchases",
                         "Connects to the store's floor plan for navigation assistance",
                       ].map((point) => Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 4),
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            const Text("• ", style: TextStyle(fontSize: 18)),
-                            Expanded(
-                              child: Text(point,
-                                  style: AppTextStyles.customStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.normal,
-                                      color: AppColors.black)),
+                            padding: const EdgeInsets.symmetric(vertical: 4),
+                            child: Row(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                const Text("• ",
+                                    style: TextStyle(fontSize: 18)),
+                                Expanded(
+                                  child: Text(point,
+                                      style: AppTextStyles.customStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.normal,
+                                          color: AppColors.black)),
+                                ),
+                              ],
                             ),
-                          ],
-                        ),
-                      )),
+                          )),
                     ],
                   ),
                 ),
@@ -177,9 +183,14 @@ class HowItWorkPage extends StatelessWidget {
                     onPressed: () => Navigator.pop(context),
                     style: ElevatedButton.styleFrom(
                       backgroundColor: AppColors.blue,
-                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.zero),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.zero),
                     ),
-                    child: Text("Close", style: AppTextStyles.customStyle(color:AppColors.white, fontSize:15 ,fontWeight: FontWeight.normal)),
+                    child: Text("Close",
+                        style: AppTextStyles.customStyle(
+                            color: AppColors.white,
+                            fontSize: 15,
+                            fontWeight: FontWeight.normal)),
                   )
                 ],
               ),
