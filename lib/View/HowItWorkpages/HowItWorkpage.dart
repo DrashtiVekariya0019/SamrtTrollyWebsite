@@ -4,6 +4,7 @@ import 'package:SmartTrolleyWebsite/Support/CommonTextStyle.dart';
 import 'package:SmartTrolleyWebsite/Utils/AppColors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class HowItWorkPage extends StatelessWidget {
   final VoidCallback onRequestDemoTap;
@@ -21,17 +22,22 @@ class HowItWorkPage extends StatelessWidget {
             const SizedBox(height: 40),
             Text(
               "How It Works",
-              style: AppTextStyles.customStyle(
-                fontSize: 32,
-                fontWeight: FontWeight.bold,
+              style: GoogleFonts.montserrat(
+                fontSize: 28,
+                fontWeight: FontWeight.w700,
                 color: AppColors.black,
               ),
             ),
             const SizedBox(height: 10),
-            const Text(
+            Text(
               "Our innovative IO trolley system streamlines the shopping experience from start to finish. Here's how it works.",
               textAlign: TextAlign.center,
-              style: TextStyle(fontSize: 16),
+              style: GoogleFonts.montserrat(
+                fontSize: 16,
+                fontWeight: FontWeight.w600,
+                height: 1.6,
+                color: Color(0xFF5A5A5A),
+              ),
             ),
             const SizedBox(height: 40),
 
@@ -42,7 +48,7 @@ class HowItWorkPage extends StatelessWidget {
 
               return Padding(
                 padding:
-                    const EdgeInsets.symmetric(vertical: 30, horizontal: 16),
+                const EdgeInsets.symmetric(vertical: 30, horizontal: 16),
                 child: LayoutBuilder(
                   builder: (context, constraints) {
                     return Row(
@@ -50,34 +56,27 @@ class HowItWorkPage extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: isEven
                           ? [
-                              Flexible(
-                                  flex: 1,
-                                  child: stepText(context, index, step)),
-                              const SizedBox(width: 20),
-                              Flexible(flex: 1, child: stepImage(step["img"]!)),
-                            ]
+                        Flexible(
+                            flex: 1,
+                            child: stepText(context, index, step)),
+                        const SizedBox(width: 20),
+                        Flexible(
+                            flex: 1, child: HoverImage(url: step["img"]!)),
+                      ]
                           : [
-                              Flexible(flex: 1, child: stepImage(step["img"]!)),
-                              const SizedBox(width: 20),
-                              Flexible(
-                                  flex: 1,
-                                  child: stepText(context, index, step)),
-                            ],
+                        Flexible(
+                            flex: 1, child: HoverImage(url: step["img"]!)),
+                        const SizedBox(width: 20),
+                        Flexible(
+                            flex: 1,
+                            child: stepText(context, index, step)),
+                      ],
                     );
                   },
                 ),
               );
             }),
 
-            const SizedBox(height: 40),
-            Text(
-              "Ready to revolutionize your shopping experience?",
-              style: AppTextStyles.customStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-                color: AppColors.black,
-              ),
-            ),
             const SizedBox(height: 20),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -114,18 +113,20 @@ class HowItWorkPage extends StatelessWidget {
         const SizedBox(height: 12),
         Text(
           step["title"],
-          style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                fontWeight: FontWeight.bold,
-                fontSize: 20,
-              ),
+          style: GoogleFonts.montserrat(
+            fontSize: 16,
+            fontWeight: FontWeight.w700,
+            color: AppColors.black,
+          ),
         ),
         const SizedBox(height: 8),
         Text(
           step["desc"],
-          style: AppTextStyles.customStyle(
-            fontSize: 15,
-            fontWeight: FontWeight.normal,
-            color: AppColors.black,
+          style: GoogleFonts.montserrat(
+            fontSize: 14,
+            fontWeight: FontWeight.w600,
+            height: 1.6,
+            color: Color(0xFF5A5A5A),
           ),
         ),
         const SizedBox(height: 10),
@@ -139,12 +140,14 @@ class HowItWorkPage extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      Text("Scan & Login Details",
-                          style: AppTextStyles.customStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold,
-                            color: AppColors.black,
-                          )),
+                      Text(
+                        "Scan & Login Details",
+                        style: GoogleFonts.montserrat(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w700,
+                          color: AppColors.black,
+                        ),
+                      ),
                       const SizedBox(height: 12),
                       ...[
                         "The login process is designed to be quick and seamless, taking less than 5 seconds to complete.",
@@ -159,22 +162,25 @@ class HowItWorkPage extends StatelessWidget {
                         "Shows recommended items based on previous purchases",
                         "Connects to the store's floor plan for navigation assistance",
                       ].map((point) => Padding(
-                            padding: const EdgeInsets.symmetric(vertical: 4),
-                            child: Row(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                const Text("• ",
-                                    style: TextStyle(fontSize: 18)),
-                                Expanded(
-                                  child: Text(point,
-                                      style: AppTextStyles.customStyle(
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.normal,
-                                          color: AppColors.black)),
+                        padding: const EdgeInsets.symmetric(vertical: 4),
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const Text("• ", style: TextStyle(fontSize: 18)),
+                            Expanded(
+                              child: Text(
+                                point,
+                                style: GoogleFonts.montserrat(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w600,
+                                  height: 1.6,
+                                  color: Color(0xFF5A5A5A),
                                 ),
-                              ],
+                              ),
                             ),
-                          )),
+                          ],
+                        ),
+                      )),
                     ],
                   ),
                 ),
@@ -186,11 +192,14 @@ class HowItWorkPage extends StatelessWidget {
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.zero),
                     ),
-                    child: Text("Close",
-                        style: AppTextStyles.customStyle(
-                            color: AppColors.white,
-                            fontSize: 15,
-                            fontWeight: FontWeight.normal)),
+                    child: Text(
+                      "Close",
+                      style: GoogleFonts.montserrat(
+                          fontSize: 13,
+                          fontWeight: FontWeight.w700,
+                          color:AppColors.white
+                      ),
+                    ),
                   )
                 ],
               ),
@@ -198,26 +207,63 @@ class HowItWorkPage extends StatelessWidget {
           },
           child: Text(
             "See Details →",
-            style: AppTextStyles.customStyle(
+            style: GoogleFonts.montserrat(
+              fontSize: 16,
+              fontWeight: FontWeight.w700,
               color: AppColors.blue,
-              fontSize: 18,
-              fontWeight: FontWeight.bold,
             ),
           ),
         ),
       ],
     );
   }
+}
 
-  Widget stepImage(String url) {
-    return ClipRRect(
-      borderRadius: BorderRadius.circular(10),
-      child: Image.asset(
-        url,
-        height: 300,
-        width: double.infinity,
-        fit: BoxFit.cover,
+class HoverImage extends StatefulWidget {
+  final String url;
+  const HoverImage({Key? key, required this.url}) : super(key: key);
+
+  @override
+  State<HoverImage> createState() => _HoverImageState();
+}
+
+class _HoverImageState extends State<HoverImage> {
+  bool _hovering = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return MouseRegion(
+      onEnter: (_) => setState(() => _hovering = true),
+      onExit: (_) => setState(() => _hovering = false),
+      child: AnimatedScale(
+        scale: _hovering ? 1.05 : 1.0,
+        duration: const Duration(milliseconds: 300),
+        curve: Curves.easeInOut,
+        child: Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10),
+            boxShadow: _hovering
+                ? [
+              BoxShadow(
+                color: Colors.black26,
+                blurRadius: 10,
+                offset: Offset(0, 6),
+              ),
+            ]
+                : [],
+          ),
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(10),
+            child: Image.asset(
+              widget.url,
+              height: 300,
+              width: double.infinity,
+              fit: BoxFit.cover,
+            ),
+          ),
+        ),
       ),
     );
   }
 }
+

@@ -16,12 +16,12 @@ class ContactController extends GetxController {
   RxString? selectedSubject = RxString('');
   RxBool agreeToTerms = false.obs;
 
-  // EmailJS credentials (replace with your actual values)
-  final String serviceId = 'service_c4p6smh';
-  final String templateId = 'template_a09t9ss';
-  final String userId = 'VPB3pOUIq2rbKPH6p';
+  // EmailJS credentials (already configured in your own account)
+  final String serviceId = 'service_vdupz8o';
+  final String templateId = 'template_43rxtf9';
+  final String userId = 'W4Qr7ihzAFrnxkWFH';
 
-  // Method to handle form submission
+  // Submit form and send email
   void submitForm() async {
     if (!agreeToTerms.value) {
       Get.snackbar("Error", "Please agree to the terms.");
@@ -45,6 +45,7 @@ class ContactController extends GetxController {
           'Content-Type': 'application/json',
         },
         body: json.encode({
+
           'service_id': serviceId,
           'template_id': templateId,
           'user_id': userId,
@@ -55,22 +56,22 @@ class ContactController extends GetxController {
             'user_company': company,
             'user_phone': phone,
             'user_message': message,
+            'to_email': 'info@netpairinfotech.com',
           },
         }),
       );
 
-
-        if (response.statusCode == 200) {
-          SnackbarHelper.showSuccess("Email sent successfully.");
-          clearForm();
-        } else {
-          print('Email error: ${response.body}');
-          SnackbarHelper.showError("Failed to send email.");
-        }
-      } catch (e) {
-        print("Exception: $e");
-        SnackbarHelper.showError("Something went wrong.");
+      if (response.statusCode == 200) {
+        SnackbarHelper.showSuccess("Email sent successfully.");
+        clearForm();
+      } else {
+        print('Email error: ${response.body}');
+        SnackbarHelper.showError("Failed to send email.");
       }
+    } catch (e) {
+      print("Exception: $e");
+      SnackbarHelper.showError("Something went wrong.");
+    }
   }
 
   void clearForm() {

@@ -13,6 +13,18 @@ class FeatureItem {
   });
 }
 
+class FeatureItems {
+  final String title;
+  final String description;
+  final String imagePath; // Change from IconData to String
+
+  FeatureItems({
+    required this.title,
+    required this.description,
+    required this.imagePath,
+  });
+}
+
 class FeaturesController extends GetxController {
   final features = <FeatureItem>[
     FeatureItem(
@@ -52,4 +64,39 @@ class FeaturesController extends GetxController {
       "Built-in wayfinding helps shoppers locate products efficiently throughout the store with optimal route guidance.",
     ),
   ];
+
+  final featuress = <FeatureItems>[
+    FeatureItems(
+      title: "All-in-oneSolution",
+      imagePath: 'assets/Images/whyTrolly1.jpg',
+      description: "All-in-one From hardware to software, we offer a complete solution that fully meets your specific requirements.",
+    ),
+    FeatureItems(
+      title: "Technology-driven Innovation",
+      imagePath: 'assets/Images/WhyTrolly2.jpg',
+      description: "Leveraging artificial intelligence and machine learning to optimize shopping experiences.",
+    ),
+    FeatureItems(
+      title: "Advanced Data Analytics",
+      imagePath: 'assets/Images/whytrolly3.jpg',
+      description: "Advanced analytics and reporting capabilities for better decision-making and insights.",
+    ),
+    FeatureItems(
+      title: "Scalable Deployment",
+      imagePath: 'assets/Images/whytrolly4.jpg',
+      description: "Iotrolley is designed to be easily and rapidly deployed across multiple stores, making it the perfect fit for retail chains.",
+    ),
+    FeatureItems(
+      title: "Global Customer Support",
+      imagePath: 'assets/Images/whytrolly5.jpg',
+      description: "With offices and partners around the world, Iotrolley is well-equipped to provide comprehensive support and solutions to clients worldwide.",
+    ),
+    FeatureItems(
+      title: "Customizable Design",
+      imagePath: 'assets/Images/whytrolly6.jpg',
+      description: "Flexible UI design options to match the branding and aesthetics of any retailer.",
+    ),
+  ];
+
 }
+

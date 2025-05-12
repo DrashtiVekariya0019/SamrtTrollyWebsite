@@ -1,5 +1,6 @@
 import 'package:SmartTrolleyWebsite/Support/CommonTextStyle.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 
 class CommonElevatedButton extends StatelessWidget {
@@ -23,10 +24,10 @@ class CommonElevatedButton extends StatelessWidget {
       ),
       child: Text(
         text,
-        style: AppTextStyles.customStyle(
+        style: GoogleFonts.montserrat(
+          fontSize: 13,
+          fontWeight: FontWeight.w700,
           color: Colors.white,
-          fontSize: 15,
-          fontWeight: FontWeight.normal,
         ),
       ),
     );

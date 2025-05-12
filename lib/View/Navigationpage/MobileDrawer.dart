@@ -1,5 +1,7 @@
 import 'package:SmartTrolleyWebsite/View/Navigationpage/Components/DrawerItems.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+
 
 
 class MobileDrawer extends StatelessWidget {
@@ -19,10 +21,10 @@ class MobileDrawer extends StatelessWidget {
               width: double.infinity,
               child: Text(
                 'IoTrolley',
-                style: TextStyle(
+                style: GoogleFonts.montserrat(
+                  fontSize: 18,
+                  fontWeight: FontWeight.w700,
                   color: Colors.white,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 22,
                 ),
               ),
             ),
@@ -67,9 +69,9 @@ class MobileDrawer extends StatelessWidget {
                       ),
                       child: Text(
                         'Sign Up',
-                        style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
+                        style: GoogleFonts.montserrat(
+                          fontSize: 15,
+                          fontWeight: FontWeight.w700,
                           color: Colors.white,
                         ),
                       ),
@@ -91,9 +93,10 @@ class MobileDrawer extends StatelessWidget {
         ListTile(
           title: Text(
             title,
-            style: TextStyle(
-              fontSize: 16,
-              fontWeight: FontWeight.w500,
+            style: GoogleFonts.montserrat(
+              fontSize: 15,
+              fontWeight: FontWeight.w700,
+              color: Colors.white,
             ),
           ),
           onTap: onTap,

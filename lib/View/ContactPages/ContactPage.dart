@@ -1,9 +1,11 @@
 import 'package:SmartTrolleyWebsite/Controller/ContactController.dart';
 import 'package:SmartTrolleyWebsite/Support/CommonElevatedButton.dart';
+import 'package:SmartTrolleyWebsite/Support/CommonHoverImage.dart';
 import 'package:SmartTrolleyWebsite/Support/CommonTextStyle.dart';
 import 'package:SmartTrolleyWebsite/Utils/AppColors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 
 class ContactPage extends StatefulWidget {
@@ -30,9 +32,9 @@ class _ContactPageState extends State<ContactPage> {
             const SizedBox(height: 40),
             Text(
               "Contact",
-              style: AppTextStyles.customStyle(
-                fontSize: 32,
-                fontWeight: FontWeight.bold,
+              style: GoogleFonts.montserrat(
+                fontSize: 28,
+                fontWeight: FontWeight.w700,
                 color: AppColors.black,
               ),
             ),
@@ -40,10 +42,11 @@ class _ContactPageState extends State<ContactPage> {
             Text(
               "Ready to transform your retail experience? Get in touch with our team today.",
               textAlign: TextAlign.center,
-              style: AppTextStyles.customStyle(
+              style: GoogleFonts.montserrat(
                 fontSize: 16,
-                fontWeight: FontWeight.normal,
-                color: AppColors.black,
+                fontWeight: FontWeight.w600,
+                height: 1.6,
+                color: Color(0xFF5A5A5A),
               ),
             ),
             const SizedBox(height: 40),
@@ -83,6 +86,17 @@ class _ContactPageState extends State<ContactPage> {
       autovalidateMode: _autoValidateMode,
       decoration: InputDecoration(
         labelText: label,
+        labelStyle: GoogleFonts.montserrat(
+          fontSize: 14,
+          fontWeight: FontWeight.w600,
+          color: Color(0xFF5A5A5A),
+        ),
+
+        errorStyle: GoogleFonts.montserrat( // ✅ Error style here
+          fontSize: 12,
+          fontWeight: FontWeight.w500,
+          color: Colors.red,
+        ),
         border: const OutlineInputBorder(),
       ),
       onChanged: (value) {
@@ -100,6 +114,16 @@ class _ContactPageState extends State<ContactPage> {
       autovalidateMode: _autoValidateMode,
       decoration: InputDecoration(
         labelText: label,
+        labelStyle: GoogleFonts.montserrat(
+          fontSize: 14,
+          fontWeight: FontWeight.w600,
+          color: Color(0xFF5A5A5A),
+        ),
+        errorStyle: GoogleFonts.montserrat( // ✅ Error style here
+          fontSize: 12,
+          fontWeight: FontWeight.w500,
+          color: Colors.red,
+        ),
         border: const OutlineInputBorder(),
       ),
       onChanged: (value) {
@@ -125,6 +149,16 @@ class _ContactPageState extends State<ContactPage> {
       autovalidateMode: _autoValidateMode,
       decoration: InputDecoration(
         labelText: label,
+        labelStyle: GoogleFonts.montserrat(
+          fontSize: 14,
+          fontWeight: FontWeight.w600,
+          color: Color(0xFF5A5A5A),
+        ),
+        errorStyle: GoogleFonts.montserrat( // ✅ Error style here
+          fontSize: 12,
+          fontWeight: FontWeight.w500,
+          color: Colors.red,
+        ),
         border: const OutlineInputBorder(),
       ),
       onChanged: (value) {
@@ -167,8 +201,18 @@ class _ContactPageState extends State<ContactPage> {
             const SizedBox(height: 30),
             Obx(() => DropdownButtonFormField<String>(
               value: controller.selectedSubject?.value == "" ? null : controller.selectedSubject?.value,
-              decoration: const InputDecoration(
+              decoration: InputDecoration(
                 labelText: 'Subject',
+                labelStyle: GoogleFonts.montserrat(
+                  fontSize: 14,
+                  fontWeight: FontWeight.w600,
+                  color: Color(0xFF5A5A5A),
+                ),
+                errorStyle: GoogleFonts.montserrat( // ✅ Error style here
+                  fontSize: 12,
+                  fontWeight: FontWeight.w500,
+                  color: Colors.red,
+                ),
                 border: OutlineInputBorder(),
               ),
               validator: (value) => value == null ? 'Please select a subject' : null,
@@ -192,8 +236,19 @@ class _ContactPageState extends State<ContactPage> {
               controller: controller.messageController,
               maxLines: 7,
               autovalidateMode: _autoValidateMode,
-              decoration: const InputDecoration(
+              decoration: InputDecoration(
                 labelText: 'Message',
+                labelStyle: GoogleFonts.montserrat(
+                  fontSize: 14,
+                  fontWeight: FontWeight.w600,
+                  color: Color(0xFF5A5A5A),
+                ),
+                errorStyle: GoogleFonts.montserrat( // ✅ Error style here
+                  fontSize: 12,
+                  fontWeight: FontWeight.w500,
+                  color: Colors.red,
+                ),
+
                 border: OutlineInputBorder(),
               ),
               onChanged: (value) {
@@ -213,17 +268,25 @@ class _ContactPageState extends State<ContactPage> {
                 ),
                 Expanded(
                   child: RichText(
-                    text: const TextSpan(
+                    text:  TextSpan(
                       style: TextStyle(fontSize: 14, color: Colors.black),
                       children: [
                         TextSpan(
                           text: 'I agree to receive communications about IOTrolley products, services, and events. You can unsubscribe at any time. View our ',
-                        ),
+                          style: GoogleFonts.montserrat(
+                            fontSize: 12,
+                            fontWeight: FontWeight.w600,
+                            height: 1.6,
+                            color: AppColors.black,
+                          ), ),
                         TextSpan(
                           text: ' Privacy Policy.',
-                          style: TextStyle(
-                            color: Colors.blue,
+                          style: GoogleFonts.montserrat(
+                            fontSize: 12,
+                            fontWeight: FontWeight.w600,
+                            height: 1.6,
                             decoration: TextDecoration.underline,
+                            color: AppColors.blue,
                           ),
                         ),
                       ],
@@ -271,9 +334,9 @@ class _ContactPageState extends State<ContactPage> {
         children: [
           Text(
             "Contact Information",
-            style: AppTextStyles.customStyle(
-              fontSize: 23,
-              fontWeight: FontWeight.bold,
+            style: GoogleFonts.montserrat(
+              fontSize: 22,
+              fontWeight: FontWeight.w700,
               color: AppColors.black,
             ),
           ),
@@ -296,9 +359,9 @@ class _ContactPageState extends State<ContactPage> {
 
           ClipRRect(
             borderRadius: BorderRadius.circular(12),
-            child: Image.asset(
-              'assets/Images/contact.png',
-              fit: BoxFit.cover,
+            child: HoverImage(
+              url:'assets/Images/contact.png',
+
               height: 400,
             ),
           ),
@@ -317,7 +380,12 @@ class _ContactPageState extends State<ContactPage> {
       children: [
         Icon(icon, size: 28, color: Colors.blueAccent),
         const SizedBox(width: 12),
-        Expanded(child: Text(text, style: const TextStyle(fontSize: 16))),
+        Expanded(child: Text(text,  style: GoogleFonts.montserrat(
+          fontSize: 12,
+          fontWeight: FontWeight.w600,
+          height: 1.6,
+          color: AppColors.black,
+        ),)),
       ],
     );
   }

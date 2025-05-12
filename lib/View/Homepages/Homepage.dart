@@ -1,6 +1,10 @@
 import 'package:SmartTrolleyWebsite/Support/CommonElevatedButton.dart';
+import 'package:SmartTrolleyWebsite/Support/CommonHoverImage.dart';
 import 'package:SmartTrolleyWebsite/Support/CommonTextStyle.dart';
+import 'package:SmartTrolleyWebsite/Utils/AppColors.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class Homepage extends StatelessWidget {
   final VoidCallback onSeeHowItWorks;
@@ -25,9 +29,13 @@ class Homepage extends StatelessWidget {
         ),
         child: Column(
           children: [
+            const SizedBox(height: 60),
             isMobile ? buildMobileLayout(context) : buildDesktopLayout(context),
             const SizedBox(height: 60),
+            buildTrolleyImageSlider(),
+
           ],
+
         ),
       ),
     );
@@ -68,27 +76,32 @@ class Homepage extends StatelessWidget {
       children: [
         Text(
           'Revolutionize Shopping With IO Trolley',
-          style: AppTextStyles.customStyle(
-            fontSize: isMobile ? 32 : 40,
-            fontWeight: FontWeight.bold,
-            color: Colors.black87,
+          style: GoogleFonts.montserrat(
+            fontSize: 28,
+            fontWeight: FontWeight.w700,
+            color: AppColors.black,
           ),
         ),
         const SizedBox(height: 20),
         Text(
           'Transform your retail experience with AI-powered trolleys that eliminate checkout lines, track purchases, and personalize shopping journeys.',
-          style: AppTextStyles.customStyle(
-            fontSize: isMobile ? 14 : 16,
-            color: Colors.black,
-            fontWeight: FontWeight.bold,
+          style: GoogleFonts.montserrat(
+            fontSize: 16,
+            fontWeight: FontWeight.w600,
+            height: 1.6,
+            color: Color(0xFF5A5A5A),
           ),
+
         ),
         const SizedBox(height: 20),
         buildButtonRow(isMobile),
         const SizedBox(height: 30),
         buildStatsGrid(),
       ],
+
     );
+
+
   }
 
   Widget buildButtonRow(bool isMobile) {
@@ -127,9 +140,9 @@ class Homepage extends StatelessWidget {
       children: [
         ClipRRect(
           borderRadius: BorderRadius.circular(12),
-          child: Image.asset(
-            'assets/Images/RevolutionizeShopping.png',
-            fit: BoxFit.contain,
+          child: HoverImage(
+            url:  'assets/Images/payandgo.png',
+            // fit: BoxFit.contain,
           ),
         ),
       ],
@@ -148,6 +161,53 @@ class Homepage extends StatelessWidget {
       ],
     );
   }
+  Widget buildTrolleyImage(String path, {double width = 400, double height = 260}) {
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(12),
+      child: HoverImage(
+        url:   path,
+        // width: width,
+        height: height,
+        // fit: BoxFit.cover,
+      ),
+    );
+  }
+  Widget buildTrolleyImageSlider() {
+    final List<String> imagePaths = [
+      'assets/Images/TrollyAction1.jpg',
+      'assets/Images/action2.jpg',
+      'assets/Images/action3.jpg',
+      'assets/Images/action4.jpg',
+      'assets/Images/action5.jpg',
+    ];
+
+    return CarouselSlider(
+      options: CarouselOptions(
+        height: 400, // 🔼 Increased height
+        autoPlay: true,
+        enlargeCenterPage: true,
+        viewportFraction: 0.6,
+        aspectRatio: 16 / 9,
+        autoPlayInterval: Duration(seconds: 3),
+      ),
+      items: imagePaths.map((path) {
+        return Builder(
+          builder: (BuildContext context) {
+            return ClipRRect(
+              // borderRadius: BorderRadius.circular(12),
+                child: Image.asset(
+                  path,
+                  width: 800,  // 🔼 Added width
+                  fit: BoxFit.fill, // 🔼 Make image cover full area
+                )
+            );
+          },
+        );
+      }).toList(),
+    );
+  }
+
+
 }
 
 class InfoTile extends StatelessWidget {
@@ -166,18 +226,17 @@ class InfoTile extends StatelessWidget {
       children: [
         Text(
           title,
-          style: AppTextStyles.customStyle(
-            fontSize: 30,
-            fontWeight: FontWeight.bold,
-            color: Colors.blue,
-          ),
+          style: GoogleFonts.montserrat(
+              fontSize: 20,
+              fontWeight: FontWeight.w700,
+              color: Colors.blue),
         ),
         Text(
           subtitle,
-          style: AppTextStyles.customStyle(
-            fontSize: 16,
-            color: Colors.black87,
-            fontWeight: FontWeight.normal,
+          style: GoogleFonts.montserrat(
+            fontSize: 15,
+            fontWeight: FontWeight.w600,
+            color: Colors.black,
           ),
         ),
       ],
@@ -202,5 +261,6 @@ class RetailerText extends StatelessWidget {
         fontSize: 20,
       ),
     );
+
   }
 }

@@ -1,6 +1,7 @@
 import 'package:SmartTrolleyWebsite/Support/CommonTextStyle.dart';
 import 'package:SmartTrolleyWebsite/Utils/AppColors.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class DesktopNavbar extends StatelessWidget {
   // Add this at the top of your class:
@@ -43,10 +44,10 @@ class DesktopNavbar extends StatelessWidget {
                   alignment: Alignment.centerLeft,
                   child: Text(
                     'IoTrolley',
-                    style: AppTextStyles.customStyle(
-                      color: AppColors.white,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 20,
+                    style: GoogleFonts.montserrat(
+                      fontSize: 18,
+                      fontWeight: FontWeight.w700,
+                      color: Colors.white,
                     ),
                   ),
                 ),
@@ -79,10 +80,10 @@ class DesktopNavbar extends StatelessWidget {
                         ),
                         child: Text(
                           'Contact',
-                          style: AppTextStyles.customStyle(
+                          style: GoogleFonts.montserrat(
+                            fontSize: 15,
+                            fontWeight: FontWeight.w700,
                             color: Colors.white,
-                            fontSize: isSmallDesktop ? 14 : 15,
-                            fontWeight: FontWeight.bold,
                           ),
                         ),
                       ),
@@ -115,10 +116,10 @@ class DesktopNavbar extends StatelessWidget {
         splashColor: Colors.transparent,
         child: Text(
           title,
-          style: TextStyle(
-            fontSize: 16,
-            color: AppColors.white,
-            fontWeight: FontWeight.bold,
+          style: GoogleFonts.montserrat(
+            fontSize: 15,
+            fontWeight: FontWeight.w700,
+            color: Colors.white,
           ),
         ),
       ),
@@ -150,10 +151,10 @@ class DesktopNavbar extends StatelessWidget {
                 ),
                 child: Text(
                   title,
-                  style: TextStyle(
-                    fontSize: 16,
-                    color: isHovered ? Colors.blue[800] : Colors.white,
-                    fontWeight: FontWeight.bold,
+                  style: GoogleFonts.montserrat(
+                    fontSize: 15,
+                    fontWeight: FontWeight.w700,
+                    color: isHovered ? Colors.black : Colors.white, // 🔥 FIXED HERE
                   ),
                 ),
               ),
@@ -163,4 +164,5 @@ class DesktopNavbar extends StatelessWidget {
       ),
     );
   }
+
 }

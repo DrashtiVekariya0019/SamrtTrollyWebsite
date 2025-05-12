@@ -2,6 +2,7 @@ import 'package:SmartTrolleyWebsite/Support/CommonTextStyle.dart';
 import 'package:SmartTrolleyWebsite/Utils/AppColors.dart';
 import 'package:SmartTrolleyWebsite/View/Navigationpage/MobileDrawer.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 
 class Appbar extends StatelessWidget {
@@ -23,10 +24,10 @@ class Appbar extends StatelessWidget {
                 elevation: 0,
                 title: Text(
                   'IoTrolley',
-                  style: AppTextStyles.customStyle(
-                    color: AppColors.white, // Use white for better contrast
-                    fontWeight: FontWeight.bold,
-                    fontSize: 20,
+                  style: GoogleFonts.montserrat(
+                    fontSize: 18,
+                    fontWeight: FontWeight.w700,
+                    color: Colors.white,
                   ),
                 ),
                 centerTitle: false,

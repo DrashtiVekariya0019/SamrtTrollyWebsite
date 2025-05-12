@@ -8,6 +8,7 @@ import 'package:SmartTrolleyWebsite/View/Navigationpage/Appbar.dart';
 import 'package:SmartTrolleyWebsite/View/Navigationpage/DesktopNavbar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 // SignUpPage content without Scaffold
 class SignUpPageContent extends StatefulWidget {
@@ -44,26 +45,27 @@ class _SignUpPageContentState extends State<SignUpPageContent> {
             // Main Content
             Expanded(
               child: SingleChildScrollView(
-                child: Padding(
-                  padding: EdgeInsets.all(16.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      SizedBox(height: 20),
-                      Text(
-                        'Sign Up',
-                        style: AppTextStyles.customStyle(
-                          fontSize: 28,
-                          fontWeight: FontWeight.bold,
-                          color: AppColors.black,
-                        ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    SizedBox(height: 20),
+                    Text(
+                      'Sign Up',
+                      style: GoogleFonts.montserrat(
+                        fontSize: 28,
+                        fontWeight: FontWeight.w700,
+                        color: AppColors.black,
                       ),
-                      SizedBox(height: 30),
-                      Container(
+                    ),
+                    SizedBox(height: 30),
+
+                    // 👉 Only form content wrapped with Padding
+                    Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 16.0),
+                      child: Container(
                         constraints: BoxConstraints(maxWidth: 500),
                         child: Form(
                           key: _formKey,
-                          // Add autovalidateMode to form
                           autovalidateMode: _autoValidateMode,
                           child: Column(
                             children: [
@@ -79,7 +81,6 @@ class _SignUpPageContentState extends State<SignUpPageContent> {
                               SizedBox(height: 20),
                               _buildPhoneTextField(
                                 "Mobile Number",
-
                                 controller.phoneController,
                               ),
                               SizedBox(height: 30),
@@ -89,7 +90,7 @@ class _SignUpPageContentState extends State<SignUpPageContent> {
                                   if (_formKey.currentState!.validate()) {
                                     controller.submitForm();
                                     setState(() {
-                                      _autoValidateMode = AutovalidateMode.disabled; // RESET HERE after success
+                                      _autoValidateMode = AutovalidateMode.disabled;
                                     });
                                   } else {
                                     setState(() {
@@ -102,12 +103,17 @@ class _SignUpPageContentState extends State<SignUpPageContent> {
                           ),
                         ),
                       ),
-                    ],
-                  ),
+                    ),
+
+                    SizedBox(height: 50),
+                    Footer(), // ✅ Footer now full-width without side padding
+                  ],
                 ),
               ),
             ),
-            Footer(), // Footer will stay at bottom
+
+
+
           ],
         );
       },
@@ -122,6 +128,16 @@ class _SignUpPageContentState extends State<SignUpPageContent> {
       controller: controller,
       decoration: InputDecoration(
         labelText: label,
+        labelStyle: GoogleFonts.montserrat(
+          fontSize: 14,
+          fontWeight: FontWeight.w600,
+          color: Color(0xFF5A5A5A),
+        ),
+        errorStyle: GoogleFonts.montserrat( // ✅ Error style here
+          fontSize: 12,
+          fontWeight: FontWeight.w500,
+          color: Colors.red,
+        ),
         border: const OutlineInputBorder(),
       ),
       // Add onChanged to revalidate as user types
@@ -139,6 +155,16 @@ class _SignUpPageContentState extends State<SignUpPageContent> {
       controller: controller,
       decoration: InputDecoration(
         labelText: label,
+        labelStyle: GoogleFonts.montserrat(
+          fontSize: 14,
+          fontWeight: FontWeight.w600,
+          color: Color(0xFF5A5A5A),
+        ),
+        errorStyle: GoogleFonts.montserrat( // ✅ Error style here
+          fontSize: 12,
+          fontWeight: FontWeight.w500,
+          color: Colors.red,
+        ),
         border: const OutlineInputBorder(),
       ),
       // Add onChanged to revalidate as user types
@@ -166,6 +192,16 @@ class _SignUpPageContentState extends State<SignUpPageContent> {
       keyboardType: TextInputType.phone,
       decoration: InputDecoration(
         labelText: label,
+        labelStyle: GoogleFonts.montserrat(
+          fontSize: 14,
+          fontWeight: FontWeight.w600,
+          color: Color(0xFF5A5A5A),
+        ),
+        errorStyle: GoogleFonts.montserrat( // ✅ Error style here
+          fontSize: 12,
+          fontWeight: FontWeight.w500,
+          color: Colors.red,
+        ),
         border: const OutlineInputBorder(),
       ),
       // Add onChanged to revalidate as user types

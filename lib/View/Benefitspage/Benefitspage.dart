@@ -1,10 +1,12 @@
 import 'package:SmartTrolleyWebsite/Controller/BenifitsController.dart';
 import 'package:SmartTrolleyWebsite/Support/CommonElevatedButton.dart';
+import 'package:SmartTrolleyWebsite/Support/CommonHoverImage.dart';
 import 'package:SmartTrolleyWebsite/Support/CommonTextStyle.dart';
 import 'package:SmartTrolleyWebsite/Utils/AppColors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinbox/flutter_spinbox.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class BenefitsPage extends StatelessWidget {
   BenefitsPage({super.key});
@@ -34,9 +36,9 @@ class BenefitsPage extends StatelessWidget {
       children: [
         Text(
           "Benefits",
-          style: AppTextStyles.customStyle(
-            fontSize: 32,
-            fontWeight: FontWeight.bold,
+          style: GoogleFonts.montserrat(
+            fontSize: 28,
+            fontWeight: FontWeight.w700,
             color: AppColors.black,
           ),
         ),
@@ -44,10 +46,11 @@ class BenefitsPage extends StatelessWidget {
         Text(
           "Our IO trolley system delivers transformative advantages for both retailers and shoppers.",
           textAlign: TextAlign.center,
-          style: AppTextStyles.customStyle(
+          style: GoogleFonts.montserrat(
             fontSize: 16,
-            fontWeight: FontWeight.normal,
-            color: AppColors.black,
+            fontWeight: FontWeight.w600,
+            height: 1.6,
+            color: Color(0xFF5A5A5A),
           ),
         ),
       ],
@@ -65,9 +68,10 @@ class BenefitsPage extends StatelessWidget {
           ),
           child: Text(
             "For Retailers",
-            style: AppTextStyles.customStyle(
+            style: GoogleFonts.montserrat(
               fontSize: 16,
-              fontWeight: FontWeight.bold,
+              fontWeight: FontWeight.w600,
+              height: 1.6,
               color: AppColors.blue,
             ),
           ),
@@ -81,9 +85,10 @@ class BenefitsPage extends StatelessWidget {
           ),
           child: Text(
             "For Shoppers",
-            style: AppTextStyles.customStyle(
+            style: GoogleFonts.montserrat(
               fontSize: 16,
-              fontWeight: FontWeight.bold,
+              fontWeight: FontWeight.w600,
+              height: 1.6,
               color: AppColors.blue,
             ),
           ),
@@ -115,19 +120,20 @@ class BenefitsPage extends StatelessWidget {
         children: [
           Text(
             "Transform Your Retail Operation",
-            style: AppTextStyles.customStyle(
-              fontSize: 23,
-              fontWeight: FontWeight.bold,
+            style: GoogleFonts.montserrat(
+              fontSize: 22,
+              fontWeight: FontWeight.w700,
               color: AppColors.black,
             ),
           ),
           const SizedBox(height: 20),
           Text(
             "IO Trolley technology empowers retailers with actionable data and operational efficiencies that drive revenue growth and customer loyalty.",
-            style: AppTextStyles.customStyle(
+            style: GoogleFonts.montserrat(
               fontSize: 16,
-              fontWeight: FontWeight.normal,
-              color: AppColors.black,
+              fontWeight: FontWeight.w600,
+              height: 1.6,
+              color: Color(0xFF5A5A5A),
             ),
           ),
           const SizedBox(height: 30),
@@ -143,20 +149,15 @@ class BenefitsPage extends StatelessWidget {
       ),
     );
   }
-
   Widget _buildRightImage() {
     return Container(
       padding: const EdgeInsets.only(top: 65),
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(12),
-        child: Image.asset(
-          'assets/Images/benefit(1).png',
-          fit: BoxFit.cover,
-          height: 400,
-        ),
+      child: HoverImage(
+        url: 'assets/Images/action4.jpg',
       ),
     );
   }
+
 
 
 
@@ -187,19 +188,20 @@ class BenefitsPage extends StatelessWidget {
             children: [
               Text(
                 title,
-                style: AppTextStyles.customStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
+                style: GoogleFonts.montserrat(
+                  fontSize: 15,
+                  fontWeight: FontWeight.w800,
                   color: AppColors.black,
                 ),
               ),
               const SizedBox(height: 6),
               Text(
                 description,
-                style: AppTextStyles.customStyle(
+                style: GoogleFonts.montserrat(
                   fontSize: 16,
-                  fontWeight: FontWeight.normal,
-                  color: AppColors.black,
+                  fontWeight: FontWeight.w600,
+                  height: 1.6,
+                  color: Color(0xFF5A5A5A),
                 ),
               ),
             ],

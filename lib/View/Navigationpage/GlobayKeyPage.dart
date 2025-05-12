@@ -1,4 +1,5 @@
 import 'package:SmartTrolleyWebsite/Support/Footer.dart';
+import 'package:SmartTrolleyWebsite/Utils/AppColors.dart';
 import 'package:SmartTrolleyWebsite/Utils/RouteData.dart';
 import 'package:SmartTrolleyWebsite/View/Benefitspage/Benefitspage.dart';
 import 'package:SmartTrolleyWebsite/View/ContactPages/ContactPage.dart';
@@ -8,6 +9,7 @@ import 'package:SmartTrolleyWebsite/View/HowItWorkpages/HowItWorkpage.dart';
 import 'package:SmartTrolleyWebsite/View/Navigationpage/DesktopNavbar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({super.key});
@@ -31,7 +33,7 @@ class _MainPageState extends State<MainPage> {
     if (context != null) {
       Scrollable.ensureVisible(
         context,
-        duration: const Duration(milliseconds: 600),
+        duration: const  Duration(milliseconds: 600),
         curve: Curves.easeInOut,
       );
     }
@@ -42,72 +44,101 @@ class _MainPageState extends State<MainPage> {
     return Scaffold(
       appBar: MediaQuery.of(context).size.width < 600
           ? AppBar(
-              title: const Text('Smart Trolley'), // Or use your logo here
-              elevation: 0,
-            )
+        title:  Text('IoTrolley', style: GoogleFonts.montserrat(
+          fontSize: 18,
+          fontWeight: FontWeight.w700,
+          color: AppColors.black,
+        ),), // Or use your logo here
+        elevation: 0,
+      )
           : null,
       drawer: MediaQuery.of(context).size.width < 600
           ? Drawer(
-              child: ListView(
-                padding: EdgeInsets.zero,
-                children: [
-                  const DrawerHeader(
-                    decoration: BoxDecoration(
-                      color: Colors.blue, // Use your brand color
-                    ),
-                    child: Text(
-                      'Smart Trolley',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 24,
-                      ),
-                    ),
-                  ),
-                  ListTile(
-                    title: const Text('Home'),
-                    onTap: () {
-                      scrollToSection(homepageKey);
-                      Navigator.pop(context); // Close the drawer
-                    },
-                  ),
-                  ListTile(
-                    title: const Text('Features'),
-                    onTap: () {
-                      scrollToSection(featuresKey);
-                      Navigator.pop(context);
-                    },
-                  ),
-                  ListTile(
-                    title: const Text('How It Works'),
-                    onTap: () {
-                      scrollToSection(howItWorkKey);
-                      Navigator.pop(context);
-                    },
-                  ),
-                  ListTile(
-                    title: const Text('Benefits'),
-                    onTap: () {
-                      scrollToSection(benefitsKey);
-                      Navigator.pop(context);
-                    },
-                  ),
-                  ListTile(
-                    title: const Text('Contact'),
-                    onTap: () {
-                      scrollToSection(contactKey);
-                      Navigator.pop(context);
-                    },
-                  ),
-                  ListTile(
-                    title: const Text('Sign Up'),
-                    onTap: () {
-                      Navigator.pop(context);
-                      Get.toNamed(AppRoutes.signup);
-                    },
-                  ),
-                ],
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: [
+            DrawerHeader(
+              decoration: BoxDecoration(
+                color: Colors.blue, // Use your brand color
               ),
-            )
+              child: Text(
+                'IoTrolley',
+                style: GoogleFonts.montserrat(
+                  fontSize: 15,
+                  fontWeight: FontWeight.w700,
+                  color:  AppColors.white,
+                ),
+              ),
+            ),
+            ListTile(
+              title:  Text('Home', style: GoogleFonts.montserrat(
+                fontSize: 15,
+                fontWeight: FontWeight.w700,
+                color:  AppColors.black,
+              ),),
+              onTap: () {
+                scrollToSection(homepageKey);
+                Navigator.pop(context); // Close the drawer
+              },
+            ),
+            ListTile(
+              title:  Text('Features', style: GoogleFonts.montserrat(
+                fontSize: 15,
+                fontWeight: FontWeight.w700,
+                color:  AppColors.black,
+              ),),
+              onTap: () {
+                scrollToSection(featuresKey);
+                Navigator.pop(context);
+              },
+            ),
+            ListTile(
+              title:  Text('How It Works', style: GoogleFonts.montserrat(
+                fontSize: 15,
+                fontWeight: FontWeight.w700,
+                color:  AppColors.black,
+              ),),
+              onTap: () {
+                scrollToSection(howItWorkKey);
+                Navigator.pop(context);
+              },
+            ),
+            ListTile(
+              title:  Text('Benefits', style: GoogleFonts.montserrat(
+                fontSize: 15,
+                fontWeight: FontWeight.w700,
+                color:  AppColors.black,
+              ),),
+              onTap: () {
+                scrollToSection(benefitsKey);
+                Navigator.pop(context);
+              },
+            ),
+            ListTile(
+              title:  Text('Contact', style: GoogleFonts.montserrat(
+                fontSize: 15,
+                fontWeight: FontWeight.w700,
+                color:  AppColors.black,
+              ),),
+              onTap: () {
+                scrollToSection(contactKey);
+                Navigator.pop(context);
+              },
+            ),
+            ListTile(
+              title:  Text('Sign Up', style: GoogleFonts.montserrat(
+                fontSize: 15,
+                fontWeight: FontWeight.w700,
+                color:  AppColors.black,
+              ),),
+              onTap: () {
+                Navigator.pop(context);
+                Get.toNamed(AppRoutes.signup);
+              },
+            ),
+          ],
+        ),
+      )
           : null,
       body: Column(
         children: [

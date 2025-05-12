@@ -18,7 +18,7 @@ class HowItWorkController extends GetxController {
       "title": "Review & Modify",
       "desc":
       "The integrated touchscreen display shows your items in real-time, allowing you to review your cart, adjust quantities, or remove items.",
-      "img": "assets/Images/reviewandmodify.png",
+      "img": "assets/Images/action5.jpg",
     },
     {
       "title": "Pay & Go",
