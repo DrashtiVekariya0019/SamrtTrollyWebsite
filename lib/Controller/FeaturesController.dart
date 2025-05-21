@@ -37,7 +37,7 @@ class FeaturesController extends GetxController {
       title: "Real-Time Inventory",
       icon: Icons.bar_chart_rounded,
       description:
-      "Synchronizes with store inventory systems to provide accurate stock levels and product availability.",
+      "Synchronizes with store inventory systems to provide accurate stock levels and product\n availability.",
     ),
     FeatureItem(
       title: "Integrated Payment",
@@ -49,7 +49,7 @@ class FeaturesController extends GetxController {
       title: "Anti-Theft Protection",
       icon: Icons.security_rounded,
       description:
-      "Advanced security features prevent unauthorized removal of items and reduce shrinkage by up to 85%.",
+      "Advanced security features \nprevent unauthorized removal of items and\n reduce shrinkage by up to\n 85%.",
     ),
     FeatureItem(
       title: "Personalized Recommendations",
@@ -61,7 +61,7 @@ class FeaturesController extends GetxController {
       title: "Indoor Navigation",
       icon: Icons.map_rounded,
       description:
-      "Built-in wayfinding helps shoppers locate products efficiently throughout the store with optimal route guidance.",
+      "Built-in wayfinding helps shoppers locate products efficiently throughout the store \nwith optimal route \nguidance.",
     ),
   ];
 
@@ -69,7 +69,7 @@ class FeaturesController extends GetxController {
     FeatureItems(
       title: "All-in-oneSolution",
       imagePath: 'assets/Images/whyTrolly1.jpg',
-      description: "All-in-one From hardware to software, we offer a complete solution that fully meets your specific requirements.",
+      description: "All-in-one From hardware to software, we offer a complete solution that fully\n meets your specific \nrequirements.",
     ),
     FeatureItems(
       title: "Technology-driven Innovation",
@@ -92,9 +92,9 @@ class FeaturesController extends GetxController {
       description: "With offices and partners around the world, Iotrolley is well-equipped to provide comprehensive support and solutions to clients worldwide.",
     ),
     FeatureItems(
-      title: "Customizable Design",
+      title: "  Customizable\n UI Design",
       imagePath: 'assets/Images/whytrolly6.jpg',
-      description: "Flexible UI design options to match the branding and aesthetics of any retailer.",
+      description: "Flexible UI design options to\n match the branding\n and aesthetics \nof any retailer.",
     ),
   ];
 

@@ -57,52 +57,95 @@ class FeaturesPage extends StatelessWidget {
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 24.0),
             constraints: const BoxConstraints(maxWidth: 1350),
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Expanded(
-                  child: Container(
-                    padding: const EdgeInsets.only(right: 40),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          "Advanced Analytics Dashboard",
-                          style: GoogleFonts.montserrat(
-                            fontSize: 22,
-                            fontWeight: FontWeight.w700,
-                            color: AppColors.black,
+            child: LayoutBuilder(
+              builder: (context, constraints) {
+                if (constraints.maxWidth > 800) {
+                  // Desktop / Tablet Landscape - Side by side row
+                  return Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Expanded(
+                        child: Container(
+                          padding: const EdgeInsets.only(right: 40),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                "Advanced Analytics Dashboard",
+                                style: GoogleFonts.montserrat(
+                                  fontSize: 22,
+                                  fontWeight: FontWeight.w700,
+                                  color: AppColors.black,
+                                ),
+                              ),
+                              const SizedBox(height: 20),
+                              Text(
+                                "Our comprehensive analytics platform provides retailers with actionable insights into customer behavior, inventory management, and sales performance.",
+                                style: GoogleFonts.montserrat(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w600,
+                                  height: 1.6,
+                                  color: Color(0xFF5A5A5A),
+                                ),
+                              ),
+                              const SizedBox(height: 30),
+                              _buildFeatureList(),
+                            ],
                           ),
                         ),
-                        const SizedBox(height: 20),
-                        Text(
-                          "Our comprehensive analytics platform provides retailers with actionable insights into customer behavior, inventory management, and sales performance.",
-                          style: GoogleFonts.montserrat(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w600,
-                            height: 1.6,
-                            color: Color(0xFF5A5A5A),
+                      ),
+                      Expanded(
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(12),
+                          child: HoverImage(
+                            url: 'assets/Images/AdvancedAnalyticsDashboard.jpg',
+                            height: 400,
                           ),
                         ),
-                        const SizedBox(height: 30),
-                        _buildFeatureList(),
-                      ],
-                    ),
-                  ),
-                ),
-                Expanded(
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(12),
-                    child: HoverImage(
-                      url:  'assets/Images/AdvancedAnalyticsDashboard.jpg',
-
-                      height: 400,
-                    ),
-                  ),
-                ),
-              ],
+                      ),
+                    ],
+                  );
+                } else {
+                  // Mobile view - Stack vertically
+                  return Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "Advanced Analytics Dashboard",
+                        style: GoogleFonts.montserrat(
+                          fontSize: 22,
+                          fontWeight: FontWeight.w700,
+                          color: AppColors.black,
+                        ),
+                      ),
+                      const SizedBox(height: 20),
+                      Text(
+                        "Our comprehensive analytics platform provides retailers with actionable insights into customer behavior, inventory management, and sales performance.",
+                        style: GoogleFonts.montserrat(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w600,
+                          height: 1.6,
+                          color: Color(0xFF5A5A5A),
+                        ),
+                      ),
+                      const SizedBox(height: 30),
+                      _buildFeatureList(),
+                      const SizedBox(height: 30),
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(12),
+                        child: HoverImage(
+                          url: 'assets/Images/AdvancedAnalyticsDashboard.jpg',
+                          height: 250,
+                          // width: double.infinity,
+                        ),
+                      ),
+                    ],
+                  );
+                }
+              },
             ),
           ),
+
 
           // Why Trolly Section
           const SizedBox(height: 60),
@@ -376,7 +419,7 @@ class FeaturesPage extends StatelessWidget {
                 benefit.title,
                 textAlign: TextAlign.center,
                 style: GoogleFonts.montserrat(
-                  fontSize: 18, // Slightly bigger font for title
+                  fontSize: 24,
                   fontWeight: FontWeight.w700,
                   color: AppColors.black,
                 ),
@@ -386,7 +429,7 @@ class FeaturesPage extends StatelessWidget {
                 benefit.description,
                 textAlign: TextAlign.center,
                 style: GoogleFonts.montserrat(
-                  fontSize: 14, // Increased font size for better readability
+                  fontSize: 14,
                   fontWeight: FontWeight.w500,
                   height: 1.6,
                   color: const Color(0xFF5A5A5A),

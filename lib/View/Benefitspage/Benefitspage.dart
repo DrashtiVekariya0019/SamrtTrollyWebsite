@@ -99,18 +99,34 @@ class BenefitsPage extends StatelessWidget {
 
 
   Widget _buildMainContent() {
-    return Container(
-      padding: const EdgeInsets.all(24.0),
-      constraints: const BoxConstraints(maxWidth: 1350),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Expanded(child: _buildLeftContent()),
-          Expanded(child: _buildRightImage()),
-        ],
-      ),
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        bool isMobile = constraints.maxWidth < 800;
+
+        return Container(
+          padding: const EdgeInsets.all(24.0),
+          constraints: const BoxConstraints(maxWidth: 1350),
+          child: isMobile
+              ? Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              _buildRightImage(),
+              const SizedBox(height: 20),
+              _buildLeftContent(),
+            ],
+          )
+              : Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Expanded(child: _buildLeftContent()),
+              Expanded(child: _buildRightImage()),
+            ],
+          ),
+        );
+      },
     );
   }
+
 
   Widget _buildLeftContent() {
     return Container(
