@@ -1,16 +1,16 @@
 import 'package:SmartTrolleyWebsite/Controller/SignUpController.dart';
 import 'package:SmartTrolleyWebsite/Support/CommonElevatedButton.dart';
-import 'package:SmartTrolleyWebsite/Support/CommonTextStyle.dart';
+
 import 'package:SmartTrolleyWebsite/Support/Footer.dart';
 import 'package:SmartTrolleyWebsite/Utils/AppColors.dart';
 
 import 'package:SmartTrolleyWebsite/View/Navigationpage/Appbar.dart';
 import 'package:SmartTrolleyWebsite/View/Navigationpage/DesktopNavbar.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-// SignUpPage content without Scaffold
 class SignUpPageContent extends StatefulWidget {
   @override
   _SignUpPageContentState createState() => _SignUpPageContentState();
@@ -19,36 +19,34 @@ class SignUpPageContent extends StatefulWidget {
 class _SignUpPageContentState extends State<SignUpPageContent> {
   final SignupController controller = Get.put(SignupController());
   final _formKey = GlobalKey<FormState>();
-  // Add autovalidateMode state
   AutovalidateMode _autoValidateMode = AutovalidateMode.disabled;
 
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (context, constraints) {
-        // Determine if mobile or desktop view
         bool isMobile = constraints.maxWidth < 800;
+
 
         return Column(
           children: [
-            // Conditional Navigation Bar
             if (!isMobile)
               DesktopNavbar(
-                // Only Home navigation is enabled, all others do nothing
-                  onHomeTap: () => Get.toNamed('/home'),
-                  onFeaturesTap: () => Get.toNamed('/home'), // Do nothing when clicked
-                  onHowItWorksTap: ()=> Get.toNamed('/home'),
-                  onBenefitsTap: () => Get.toNamed('/home'),
-                  onContactTap: () => Get.toNamed('/home'),
-                  onSignUpTap: () => {}
+                onHomeTap: () => Get.toNamed('/home'),
+                onFeaturesTap: () => Get.toNamed('/home'),
+                onHowItWorksTap: () => Get.toNamed('/home'),
+                onBenefitsTap: () => Get.toNamed('/home'),
+                onContactTap: () => Get.toNamed('/home'),
+                onSignUpTap: () => {},
               ),
-            // Main Content
             Expanded(
               child: SingleChildScrollView(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    SizedBox(height: 20),
+                    const SizedBox(height: 20),
+
+                    // 🟦 Animated Heading
                     Text(
                       'Sign Up',
                       style: GoogleFonts.montserrat(
@@ -56,14 +54,18 @@ class _SignUpPageContentState extends State<SignUpPageContent> {
                         fontWeight: FontWeight.w700,
                         color: AppColors.black,
                       ),
-                    ),
-                    SizedBox(height: 30),
+                    )
+                        .animate()
+                        .fadeIn(duration: 800.ms)
+                        .slideY(begin: -0.5, end: 0),
 
-                    // 👉 Only form content wrapped with Padding
+                    const SizedBox(height: 30),
+
+                    // 🟨 Form Fields with Animation
                     Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 16.0),
+                      padding: const EdgeInsets.symmetric(horizontal: 16.0),
                       child: Container(
-                        constraints: BoxConstraints(maxWidth: 500),
+                        constraints: const BoxConstraints(maxWidth: 500),
                         child: Form(
                           key: _formKey,
                           autovalidateMode: _autoValidateMode,
@@ -72,18 +74,34 @@ class _SignUpPageContentState extends State<SignUpPageContent> {
                               _buildValidatedTextField(
                                 "Name",
                                 controller.nameController,
-                              ),
-                              SizedBox(height: 20),
+                              )
+                                  .animate()
+                                  .fadeIn(duration: 500.ms)
+                                  .slideX(begin: -0.2, end: 0),
+
+                              const SizedBox(height: 20),
+
                               _buildEmailTextField(
                                 "Email",
                                 controller.emailController,
-                              ),
-                              SizedBox(height: 20),
+                              )
+                                  .animate(delay: 300.ms)
+                                  .fadeIn(duration: 500.ms)
+                                  .slideX(begin: -0.2, end: 0),
+
+                              const SizedBox(height: 20),
+
                               _buildPhoneTextField(
                                 "Mobile Number",
                                 controller.phoneController,
-                              ),
-                              SizedBox(height: 30),
+                              )
+                                  .animate(delay: 600.ms)
+                                  .fadeIn(duration: 500.ms)
+                                  .slideX(begin: -0.2, end: 0),
+
+                              const SizedBox(height: 30),
+
+                              // 🟩 Animated Button
                               CommonElevatedButton(
                                 text: "Sign Up",
                                 onPressed: () {
@@ -98,32 +116,34 @@ class _SignUpPageContentState extends State<SignUpPageContent> {
                                     });
                                   }
                                 },
-                              ),
+                              )
+                                  .animate(delay: 900.ms)
+                                  .fadeIn(duration: 600.ms)
+                                  .scale(begin: const Offset(0.8, 0.8), end: const Offset(1, 1)),
                             ],
                           ),
                         ),
                       ),
                     ),
 
-                    SizedBox(height: 50),
-                    Footer(), // ✅ Footer now full-width without side padding
+                    const SizedBox(height: 50),
+
+                    // 🟥 Animated Footer
+                    Footer()
+                        .animate(delay: 1100.ms)
+                        .fadeIn(duration: 600.ms)
+                        .slideY(begin: 0.3, end: 0),
                   ],
                 ),
               ),
             ),
-
-
-
           ],
         );
       },
     );
   }
 
-  Widget _buildValidatedTextField(
-      String label,
-      TextEditingController controller,
-      ) {
+  Widget _buildValidatedTextField(String label, TextEditingController controller) {
     return TextFormField(
       controller: controller,
       decoration: InputDecoration(
@@ -131,16 +151,15 @@ class _SignUpPageContentState extends State<SignUpPageContent> {
         labelStyle: GoogleFonts.montserrat(
           fontSize: 14,
           fontWeight: FontWeight.w600,
-          color: Color(0xFF5A5A5A),
+          color: const Color(0xFF5A5A5A),
         ),
-        errorStyle: GoogleFonts.montserrat( // ✅ Error style here
+        errorStyle: GoogleFonts.montserrat(
           fontSize: 12,
           fontWeight: FontWeight.w500,
           color: Colors.red,
         ),
         border: const OutlineInputBorder(),
       ),
-      // Add onChanged to revalidate as user types
       onChanged: (value) {
         if (_autoValidateMode == AutovalidateMode.onUserInteraction) {
           _formKey.currentState?.validate();
@@ -158,16 +177,15 @@ class _SignUpPageContentState extends State<SignUpPageContent> {
         labelStyle: GoogleFonts.montserrat(
           fontSize: 14,
           fontWeight: FontWeight.w600,
-          color: Color(0xFF5A5A5A),
+          color: const Color(0xFF5A5A5A),
         ),
-        errorStyle: GoogleFonts.montserrat( // ✅ Error style here
+        errorStyle: GoogleFonts.montserrat(
           fontSize: 12,
           fontWeight: FontWeight.w500,
           color: Colors.red,
         ),
         border: const OutlineInputBorder(),
       ),
-      // Add onChanged to revalidate as user types
       onChanged: (value) {
         if (_autoValidateMode == AutovalidateMode.onUserInteraction) {
           _formKey.currentState?.validate();
@@ -176,9 +194,7 @@ class _SignUpPageContentState extends State<SignUpPageContent> {
       validator: (value) {
         if (value == null || value.isEmpty) {
           return 'Please enter $label';
-        } else if (!RegExp(
-          r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$',
-        ).hasMatch(value)) {
+        } else if (!RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$').hasMatch(value)) {
           return 'Please enter a valid email';
         }
         return null;
@@ -195,16 +211,15 @@ class _SignUpPageContentState extends State<SignUpPageContent> {
         labelStyle: GoogleFonts.montserrat(
           fontSize: 14,
           fontWeight: FontWeight.w600,
-          color: Color(0xFF5A5A5A),
+          color: const Color(0xFF5A5A5A),
         ),
-        errorStyle: GoogleFonts.montserrat( // ✅ Error style here
+        errorStyle: GoogleFonts.montserrat(
           fontSize: 12,
           fontWeight: FontWeight.w500,
           color: Colors.red,
         ),
         border: const OutlineInputBorder(),
       ),
-      // Add onChanged to revalidate as user types
       onChanged: (value) {
         if (_autoValidateMode == AutovalidateMode.onUserInteraction) {
           _formKey.currentState?.validate();
@@ -226,7 +241,6 @@ class _SignUpPageContentState extends State<SignUpPageContent> {
 class SignUpPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    // Wrap the content with the Appbar component
     return Appbar(
       body: Scaffold(
         body: SignUpPageContent(),

@@ -79,21 +79,9 @@ class Footer extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text('Navigation',  style: GoogleFonts.montserrat(
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
-                      height: 1.6,
-                      color: AppColors.black,
-                    ),),
-                    const SizedBox(height: 10),
-                    navLink('Home'),
-                    navLink('Features'),
-                    navLink('How It Work'),
-                    navLink('Benefits'),
-                    navLink('Contact'),
-                    navLink('Sign Up'),
 
-                    const SizedBox(height: 20),
+
+
                     Text('Follow Us', style: TextStyle(color:AppColors.black)),
                     const SizedBox(height: 10),
                     Row(
