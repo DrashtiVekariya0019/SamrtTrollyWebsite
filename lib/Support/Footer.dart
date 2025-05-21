@@ -80,8 +80,6 @@ class Footer extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
 
-
-
                     Text('Follow Us', style: TextStyle(color:AppColors.black)),
                     const SizedBox(height: 10),
                     Row(
