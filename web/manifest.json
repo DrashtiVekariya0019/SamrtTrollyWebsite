@@ -1,11 +1,11 @@
 {
     "name": "SmartTrolleyWebsite",
-    "short_name": "SmartTrolleyWebsite",
+    "short_name": "SmartTrolley",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
     "theme_color": "#0175C2",
-    "description": "SmartTrolleyWebsite",
+    "description": "SmartTrolley Progressive Web App",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [

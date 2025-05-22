@@ -1,8 +1,7 @@
 import 'package:SmartTrolleyWebsite/View/Navigationpage/Components/DrawerItems.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-
-
+import 'package:get/get.dart';
 
 class MobileDrawer extends StatelessWidget {
   const MobileDrawer({super.key});
@@ -35,24 +34,19 @@ class MobileDrawer extends StatelessWidget {
                 padding: EdgeInsets.zero,
                 children: [
                   _drawerItem('Home', () {
-                    Navigator.pop(context); // Close drawer when tapped
-                    // Add navigation logic here
+                    _safeNavigation(context, '/home');
                   }),
                   _drawerItem('Features', () {
-                    Navigator.pop(context);
-                    // Add navigation logic here
+                    _safeNavigation(context, '/home');
                   }),
                   _drawerItem('How It Works', () {
-                    Navigator.pop(context);
-                    // Add navigation logic here
+                    _safeNavigation(context, '/home');
                   }),
                   _drawerItem('Benefits', () {
-                    Navigator.pop(context);
-                    // Add navigation logic here
+                    _safeNavigation(context, '/home');
                   }),
                   _drawerItem('Contact', () {
-                    Navigator.pop(context);
-                    // Add navigation logic here
+                    _safeNavigation(context, '/home');
                   }),
 
                   // Sign Up button with distinct styling
@@ -60,12 +54,14 @@ class MobileDrawer extends StatelessWidget {
                     margin: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                     child: ElevatedButton(
                       onPressed: () {
-                        Navigator.pop(context);
-                        // Add navigation logic here
+                        _safeNavigation(context, '/signup');
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.blue[800],
                         padding: EdgeInsets.symmetric(vertical: 12),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(8),
+                        ),
                       ),
                       child: Text(
                         'Sign Up',
@@ -86,6 +82,29 @@ class MobileDrawer extends StatelessWidget {
     );
   }
 
+  // Safe navigation method with proper error handling
+  void _safeNavigation(BuildContext context, String route) {
+    try {
+      // Close drawer first
+      if (Navigator.canPop(context)) {
+        Navigator.pop(context);
+      }
+
+      // Wait for drawer to close completely
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        // Check if route exists before navigating
+        if (Get.routing.route?.settings.name != route) {
+          // Use pushReplacementNamed instead of offAllNamed for better stability
+          Get.offAndToNamed(route);
+        }
+      });
+    } catch (e) {
+      print('Navigation error: $e');
+      // Fallback navigation
+      Navigator.of(context).pushReplacementNamed(route);
+    }
+  }
+
   // Helper method to create drawer items
   Widget _drawerItem(String title, VoidCallback onTap) {
     return Column(
@@ -95,14 +114,21 @@ class MobileDrawer extends StatelessWidget {
             title,
             style: GoogleFonts.montserrat(
               fontSize: 15,
-              fontWeight: FontWeight.w700,
-              color: Colors.white,
+              fontWeight: FontWeight.w600,
+              color: Colors.black,
             ),
           ),
           onTap: onTap,
           contentPadding: EdgeInsets.symmetric(horizontal: 24, vertical: 4),
+          hoverColor: Colors.grey[100],
         ),
-        Divider(height: 1, thickness: 0.5, indent: 24, endIndent: 24),
+        Divider(
+          height: 1,
+          thickness: 0.5,
+          indent: 24,
+          endIndent: 24,
+          color: Colors.grey[300],
+        ),
       ],
     );
   }
