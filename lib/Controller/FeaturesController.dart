@@ -37,7 +37,7 @@ class FeaturesController extends GetxController {
       title: "Real-Time Inventory",
       icon: Icons.bar_chart_rounded,
       description:
-      "Synchronizes with store inventory systems to provide accurate stock levels and product\n availability.",
+      "Synchronizes with store inventory systems to provide accurate stock levels and product availability.",
     ),
     FeatureItem(
       title: "Integrated Payment",
@@ -46,10 +46,10 @@ class FeaturesController extends GetxController {
       "Secure payment processing directly from the trolley with multiple payment options and digital receipts.",
     ),
     FeatureItem(
-      title: "Anti-Theft Protection",
+      title: "Customer Mobile Integration",
       icon: Icons.security_rounded,
       description:
-      "Advanced security features \nprevent unauthorized removal of items and\n reduce shrinkage by up to\n 85%.",
+      "Syncs seamlessly with shoppers' smartphones for loyalty rewards, promotions, and payment.",
     ),
     FeatureItem(
       title: "Personalized Recommendations",
@@ -61,7 +61,7 @@ class FeaturesController extends GetxController {
       title: "Indoor Navigation",
       icon: Icons.map_rounded,
       description:
-      "Built-in wayfinding helps shoppers locate products efficiently throughout the store \nwith optimal route \nguidance.",
+      "Built-in wayfinding helps shoppers locate products efficiently throughout the    store with optimal route guidance.",
     ),
   ];
 
@@ -69,7 +69,7 @@ class FeaturesController extends GetxController {
     FeatureItems(
       title: "All-in-oneSolution",
       imagePath: 'assets/Images/whyTrolly1.jpg',
-      description: "All-in-one From hardware to software, we offer a complete solution that fully\n meets your specific \nrequirements.",
+      description: "All-in-one From hardware to software, we offer a complete solution that fully meets your specific requirements.",
     ),
     FeatureItems(
       title: "Technology-driven Innovation",
@@ -77,26 +77,25 @@ class FeaturesController extends GetxController {
       description: "Leveraging artificial intelligence and machine learning to optimize shopping experiences.",
     ),
     FeatureItems(
-      title: "Advanced Data Analytics",
+      title: "Boost Revenue and     Loyalty",
       imagePath: 'assets/Images/whytrolly3.jpg',
-      description: "Advanced analytics and reporting capabilities for better decision-making and insights.",
+      description: "Engage customers with personalized offers and faster checkouts.",
     ),
     FeatureItems(
-      title: "Scalable Deployment",
+      title: " Enhanced Customer Experience",
       imagePath: 'assets/Images/whytrolly4.jpg',
-      description: "Iotrolley is designed to be easily and rapidly deployed across multiple stores, making it the perfect fit for retail chains.",
+      description: "Deliver a frictionless, intuitive shopping journey.",
     ),
     FeatureItems(
-      title: "Global Customer Support",
+      title: "Operational Efficiency",
       imagePath: 'assets/Images/whytrolly5.jpg',
-      description: "With offices and partners around the world, Iotrolley is well-equipped to provide comprehensive support and solutions to clients worldwide.",
+      description: "Reduce cashier needs, optimize stock management, and cut costs.",
     ),
     FeatureItems(
-      title: "  Customizable\n UI Design",
+      title: "Future-Ready Retail",
       imagePath: 'assets/Images/whytrolly6.jpg',
-      description: "Flexible UI design options to\n match the branding\n and aesthetics \nof any retailer.",
+      description: "Position your store at the forefront of retail        innovation.",
     ),
   ];
 
 }
-

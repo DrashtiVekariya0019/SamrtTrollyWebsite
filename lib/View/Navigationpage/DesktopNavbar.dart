@@ -1,15 +1,15 @@
-import 'package:SmartTrolleyWebsite/Support/CommonTextStyle.dart';
-import 'package:SmartTrolleyWebsite/Utils/AppColors.dart';
+
+import 'package:AivoCartsWebsite/Utils/AppColors.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class DesktopNavbar extends StatelessWidget {
-  // Add this at the top of your class:
   final ValueNotifier<bool> _isHovering = ValueNotifier(false);
   final VoidCallback onHomeTap;
   final VoidCallback onFeaturesTap;
   final VoidCallback onHowItWorksTap;
   final VoidCallback onBenefitsTap;
+  final VoidCallback onBlogTap;
   final VoidCallback onContactTap;
   final VoidCallback onSignUpTap;
 
@@ -19,6 +19,7 @@ class DesktopNavbar extends StatelessWidget {
     required this.onFeaturesTap,
     required this.onHowItWorksTap,
     required this.onBenefitsTap,
+    required this.onBlogTap,
     required this.onContactTap,
     required this.onSignUpTap,
   });
@@ -29,79 +30,87 @@ class DesktopNavbar extends StatelessWidget {
       builder: (context, constraints) {
         bool isSmallDesktop = constraints.maxWidth < 1000;
 
-        return Container(
-          color: Colors.blue[800],
-          padding: EdgeInsets.symmetric(
-              horizontal: isSmallDesktop ? 16 : 32,
-              vertical: 20
-          ),
-          child: Row(
-            children: [
-              // Left Side: Logo
-              Expanded(
-                flex: 1,
-                child: Align(
-                  alignment: Alignment.centerLeft,
-                  child: Text(
-                    'IoTrolley',
-                    style: GoogleFonts.montserrat(
-                      fontSize: 18,
-                      fontWeight: FontWeight.w700,
-                      color: Colors.white,
+        return Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Container(
+              color: Colors.blue,
+              padding: EdgeInsets.symmetric(
+                horizontal: isSmallDesktop ? 16 : 32,
+                vertical: 20,
+              ),
+              child: Row(
+                children: [
+                  // Left Side: Logo
+                  Expanded(
+                    flex: 1,
+                    child: Align(
+                      alignment: Alignment.centerLeft,
+                      child: Image.asset(
+                        'assets/Images/img.png',
+                        height: 80,
+                      ),
                     ),
                   ),
-                ),
-              ),
 
-              // Center: Menu Items
-              Expanded(
-                flex: isSmallDesktop ? 3 : 2,
-                child: FittedBox(
-                  fit: BoxFit.scaleDown,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      _navItem("Home", onTap: onHomeTap),
-                      _navItem("Features", onTap: onFeaturesTap),
-                      _navItem("How It Works", onTap: onHowItWorksTap),
-                      _navItem("Benefits", onTap: onBenefitsTap),
-                      SizedBox(width: isSmallDesktop ? 6 : 12),
-                      ElevatedButton(
-                        onPressed: onContactTap,
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.green,
-                          padding: EdgeInsets.symmetric(
-                            horizontal: isSmallDesktop ? 10 : 20,
-                            vertical: 5,
+                  // Center: Menu Items
+                  Expanded(
+                    flex: isSmallDesktop ? 3 : 2,
+                    child: FittedBox(
+                      fit: BoxFit.scaleDown,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          _navItem("Home", onTap: onHomeTap),
+                          _navItem("Features", onTap: onFeaturesTap),
+                          _navItem("How It Works", onTap: onHowItWorksTap),
+                          _navItem("Benefits", onTap: onBenefitsTap),
+                          _navItem("Blog", onTap: onBlogTap),
+
+                          SizedBox(width: isSmallDesktop ? 6 : 12),
+                          ElevatedButton(
+                            onPressed: onContactTap,
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.green,
+                              padding: EdgeInsets.symmetric(
+                                horizontal: isSmallDesktop ? 10 : 20,
+                                vertical: 5,
+                              ),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(4),
+                              ),
+                            ),
+                            child: Text(
+                              'Contact',
+                              style: GoogleFonts.montserrat(
+                                fontSize: 15,
+                                fontWeight: FontWeight.w700,
+                                color: Colors.white,
+                              ),
+                            ),
                           ),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(4),
-                          ),
-                        ),
-                        child: Text(
-                          'Contact',
-                          style: GoogleFonts.montserrat(
-                            fontSize: 15,
-                            fontWeight: FontWeight.w700,
-                            color: Colors.white,
-                          ),
-                        ),
+                        ],
                       ),
-                    ],
+                    ),
                   ),
-                ),
-              ),
 
-              // Right Side: Sign Up
-              Flexible(
-                flex: 1,
-                child: Align(
-                  alignment: Alignment.centerRight,
-                  child: _signUpNavItem("Sign Up", onTap: onSignUpTap),
-                ),
+                  // Right Side: Sign Up
+                  Flexible(
+                    flex: 1,
+                    child: Align(
+                      alignment: Alignment.centerRight,
+                      child: _signUpNavItem("Sign Up", onTap: onSignUpTap),
+                    ),
+                  ),
+                ],
               ),
-            ],
-          ),
+            ),
+            // Divider line below Navbar
+            Container(
+              height: 1,
+              color: Color(0xFF05203D),
+            ),
+          ],
         );
       },
     );
@@ -119,7 +128,7 @@ class DesktopNavbar extends StatelessWidget {
           style: GoogleFonts.montserrat(
             fontSize: 15,
             fontWeight: FontWeight.w700,
-            color: Colors.white,
+            color:AppColors.white,
           ),
         ),
       ),
@@ -145,7 +154,7 @@ class DesktopNavbar extends StatelessWidget {
                   vertical: 5,
                 ),
                 decoration: BoxDecoration(
-                  color: isHovered ? Colors.white : Colors.transparent,
+                  color: isHovered ? Colors.transparent : Colors.transparent,
                   border: Border.all(color: Colors.white, width: 1.3),
                   borderRadius: BorderRadius.circular(6),
                 ),
@@ -154,7 +163,7 @@ class DesktopNavbar extends StatelessWidget {
                   style: GoogleFonts.montserrat(
                     fontSize: 15,
                     fontWeight: FontWeight.w700,
-                    color: isHovered ? Colors.black : Colors.white, // 🔥 FIXED HERE
+                    color: isHovered ? Colors.white : Colors.white,
                   ),
                 ),
               ),
@@ -164,5 +173,4 @@ class DesktopNavbar extends StatelessWidget {
       ),
     );
   }
-
 }

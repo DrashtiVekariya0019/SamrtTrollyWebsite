@@ -1,4 +1,4 @@
-import 'package:SmartTrolleyWebsite/View/Navigationpage/Components/DrawerItems.dart';
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:get/get.dart';
@@ -16,15 +16,11 @@ class MobileDrawer extends StatelessWidget {
             // Drawer Header with logo
             Container(
               padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 16),
-              color: Colors.blue[800],
+              color: Colors.blue,
               width: double.infinity,
-              child: Text(
-                'IoTrolley',
-                style: GoogleFonts.montserrat(
-                  fontSize: 18,
-                  fontWeight: FontWeight.w700,
-                  color: Colors.white,
-                ),
+              child: Image.asset(
+                'assets/Images/img.png',
+                height: 80,
               ),
             ),
 
@@ -44,6 +40,9 @@ class MobileDrawer extends StatelessWidget {
                   }),
                   _drawerItem('Benefits', () {
                     _safeNavigation(context, '/home');
+                  }),
+                  _drawerItem('Blog', () {
+                    _safeNavigation(context, '/blog');
                   }),
                   _drawerItem('Contact', () {
                     _safeNavigation(context, '/home');

@@ -1,6 +1,6 @@
-import 'package:SmartTrolleyWebsite/Support/CommonTextStyle.dart';
-import 'package:SmartTrolleyWebsite/Utils/AppColors.dart';
-import 'package:SmartTrolleyWebsite/View/Navigationpage/MobileDrawer.dart';
+
+import 'package:AivoCartsWebsite/Utils/AppColors.dart';
+import 'package:AivoCartsWebsite/View/Navigationpage/MobileDrawer.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -15,29 +15,38 @@ class Appbar extends StatelessWidget {
     return LayoutBuilder(
       builder: (context, constraints) {
         if (constraints.maxWidth < 800) {
-          // 🔹 Mobile View — Keep AppBar but fix styling
+          // 🔹 Mobile View — Fixed drawer icon visibility
           return Scaffold(
             appBar: PreferredSize(
-              preferredSize: Size.fromHeight(56), // Standard AppBar height
+              preferredSize: Size.fromHeight(56),
               child: AppBar(
-                backgroundColor: Colors.blue[800], // Match desktop navbar color
+                backgroundColor: Colors.white,
                 elevation: 0,
-                title: Text(
-                  'IoTrolley',
-                  style: GoogleFonts.montserrat(
-                    fontSize: 18,
-                    fontWeight: FontWeight.w700,
-                    color: Colors.white,
-                  ),
-                ),
+                // title: Image.asset(
+                //   'assets/Images/img.png',
+                //   height: 80,
+                // ),
                 centerTitle: false,
-                iconTheme: IconThemeData(color: AppColors.white),
+
+                iconTheme: IconThemeData(color: Colors.black),
+
               ),
             ),
             drawer: Drawer(
               child: MobileDrawer(),
             ),
-            body: SafeArea(child: body), // Use SafeArea to prevent content from going under status bar
+            body: Column(
+              children: [
+                // Divider line below AppBar
+                Container(
+                  height: 1,
+                  color: Color(0xFF05203D),
+                ),
+                Expanded(
+                  child: SafeArea(child: body),
+                ),
+              ],
+            ),
           );
         } else {
           // 🔹 Desktop View

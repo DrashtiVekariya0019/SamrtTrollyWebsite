@@ -1,6 +1,7 @@
-import 'package:SmartTrolleyWebsite/Services/ApiFunction.dart';
-import 'package:SmartTrolleyWebsite/Utils/RouteData.dart';
-import 'package:SmartTrolleyWebsite/View/Navigationpage/GlobayKeyPage.dart';
+
+import 'package:AivoCartsWebsite/Services/ApiFunction.dart';
+import 'package:AivoCartsWebsite/Utils/RouteData.dart';
+import 'package:AivoCartsWebsite/View/Navigationpage/GlobayKeyPage.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:flutter_web_plugins/flutter_web_plugins.dart';
@@ -29,7 +30,7 @@ class MyApp extends StatelessWidget {
       getPages: AppRoutes.routes,
       initialRoute: AppRoutes.splash,
       debugShowCheckedModeBanner: false,
-      title: 'IoTrolley',
+      title: 'AivoCartsWebsite',
       theme: ThemeData(
         useMaterial3: true,
         primarySwatch: Colors.blue,

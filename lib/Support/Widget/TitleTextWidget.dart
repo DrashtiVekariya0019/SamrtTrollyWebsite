@@ -1,5 +1,6 @@
-import 'package:SmartTrolleyWebsite/Support/CommonTextStyle.dart';
-import 'package:SmartTrolleyWebsite/Utils/AppColors.dart';
+
+import 'package:AivoCartsWebsite/Support/CommonTextStyle.dart';
+import 'package:AivoCartsWebsite/Utils/AppColors.dart';
 import 'package:flutter/material.dart';
 
 

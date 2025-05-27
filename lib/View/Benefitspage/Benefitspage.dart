@@ -1,8 +1,7 @@
-import 'package:SmartTrolleyWebsite/Controller/BenifitsController.dart';
-import 'package:SmartTrolleyWebsite/Support/CommonElevatedButton.dart';
-import 'package:SmartTrolleyWebsite/Support/CommonHoverImage.dart';
-import 'package:SmartTrolleyWebsite/Support/CommonTextStyle.dart';
-import 'package:SmartTrolleyWebsite/Utils/AppColors.dart';
+
+import 'package:AivoCartsWebsite/Controller/BenifitsController.dart';
+import 'package:AivoCartsWebsite/Support/CommonHoverImage.dart';
+import 'package:AivoCartsWebsite/Utils/AppColors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinbox/flutter_spinbox.dart';
 import 'package:get/get.dart';
@@ -24,6 +23,8 @@ class BenefitsPage extends StatelessWidget {
             const SizedBox(height: 20),
             _buildButtons(),
             _buildMainContent(),
+            const SizedBox(height: 60),
+            _buildIndustriesSection(), // 👈 Added Industries Section
             const SizedBox(height: 40),
           ],
         ),
@@ -56,6 +57,7 @@ class BenefitsPage extends StatelessWidget {
       ],
     );
   }
+
   Widget _buildButtons() {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -97,36 +99,19 @@ class BenefitsPage extends StatelessWidget {
     );
   }
 
-
   Widget _buildMainContent() {
-    return LayoutBuilder(
-      builder: (context, constraints) {
-        bool isMobile = constraints.maxWidth < 800;
-
-        return Container(
-          padding: const EdgeInsets.all(24.0),
-          constraints: const BoxConstraints(maxWidth: 1350),
-          child: isMobile
-              ? Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              _buildRightImage(),
-              const SizedBox(height: 20),
-              _buildLeftContent(),
-            ],
-          )
-              : Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Expanded(child: _buildLeftContent()),
-              Expanded(child: _buildRightImage()),
-            ],
-          ),
-        );
-      },
+    return Container(
+      padding: const EdgeInsets.all(24.0),
+      constraints: const BoxConstraints(maxWidth: 1350),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Expanded(child: _buildLeftContent()),
+          Expanded(child: _buildRightImage()),
+        ],
+      ),
     );
   }
-
 
   Widget _buildLeftContent() {
     return Container(
@@ -156,15 +141,11 @@ class BenefitsPage extends StatelessWidget {
           _buildFeatureList(),
           const SizedBox(height: 30),
           const Divider(height: 1),
-          const SizedBox(height: 30),
-          // CommonElevatedButton(
-          //   text: "View Success Stories",
-          //   onPressed: () {},
-          // ),
         ],
       ),
     );
   }
+
   Widget _buildRightImage() {
     return Container(
       padding: const EdgeInsets.only(top: 65),
@@ -173,9 +154,6 @@ class BenefitsPage extends StatelessWidget {
       ),
     );
   }
-
-
-
 
   Widget _buildFeatureList() {
     return Column(
@@ -205,7 +183,7 @@ class BenefitsPage extends StatelessWidget {
               Text(
                 title,
                 style: GoogleFonts.montserrat(
-                  fontSize: 15,
+                  fontSize: 16,
                   fontWeight: FontWeight.w800,
                   color: AppColors.black,
                 ),
@@ -214,10 +192,90 @@ class BenefitsPage extends StatelessWidget {
               Text(
                 description,
                 style: GoogleFonts.montserrat(
-                  fontSize: 16,
+                  fontSize: 15,
                   fontWeight: FontWeight.w600,
                   height: 1.6,
                   color: Color(0xFF5A5A5A),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildBulletText(String text) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 4.0),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const Text("• ", style: TextStyle(fontSize: 20)),
+          Expanded(
+            child: Text(
+              text,
+              style: GoogleFonts.montserrat(
+                fontSize: 16,
+                fontWeight: FontWeight.w600,
+                color: Color(0xFF5A5A5A),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  /// NEWLY ADDED SECTION - Industries We Serve
+  Widget _buildIndustriesSection() {
+    return Column(
+      children: [
+        Text(
+          "Industries We Serve",
+          textAlign: TextAlign.center,
+          style: GoogleFonts.montserrat(
+            fontSize: 28,
+            fontWeight: FontWeight.w700,
+            color: AppColors.black,
+          ),
+        ),
+        const SizedBox(height: 20),
+        Container(
+          padding: const EdgeInsets.all(24.0),
+          constraints: const BoxConstraints(maxWidth: 1350),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              // Left Side: Text
+              Expanded(
+                flex: 2,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    _buildBulletText("Grocery Stores"),
+                    _buildBulletText("Supermarkets"),
+                    _buildBulletText("Hypermarkets"),
+                    _buildBulletText("Specialty Retail"),
+                    _buildBulletText("Convenience Stores"),
+                    const SizedBox(height: 20),
+                    Text(
+                      "Wherever there’s shopping, AivoCarts brings smarter solutions.",
+                      style: GoogleFonts.montserrat(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w600,
+                        color: Color(0xFF5A5A5A),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(width: 32),
+              // Right Side: Image
+              Expanded(
+                flex: 3,
+                child: HoverImage(
+                  url: 'assets/Images/action3.jpg', // 👈 Replace with correct image
                 ),
               ),
             ],

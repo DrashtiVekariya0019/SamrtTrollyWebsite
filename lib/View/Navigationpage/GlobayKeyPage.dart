@@ -1,12 +1,13 @@
-import 'package:SmartTrolleyWebsite/Support/Footer.dart';
-import 'package:SmartTrolleyWebsite/Utils/AppColors.dart';
-import 'package:SmartTrolleyWebsite/Utils/RouteData.dart';
-import 'package:SmartTrolleyWebsite/View/Benefitspage/Benefitspage.dart';
-import 'package:SmartTrolleyWebsite/View/ContactPages/ContactPage.dart';
-import 'package:SmartTrolleyWebsite/View/Featurespages/Featurespage.dart';
-import 'package:SmartTrolleyWebsite/View/Homepages/Homepage.dart';
-import 'package:SmartTrolleyWebsite/View/HowItWorkpages/HowItWorkpage.dart';
-import 'package:SmartTrolleyWebsite/View/Navigationpage/DesktopNavbar.dart';
+
+import 'package:AivoCartsWebsite/Support/Footer.dart';
+import 'package:AivoCartsWebsite/Utils/AppColors.dart';
+import 'package:AivoCartsWebsite/Utils/RouteData.dart';
+import 'package:AivoCartsWebsite/View/Benefitspage/Benefitspage.dart';
+import 'package:AivoCartsWebsite/View/ContactPages/ContactPage.dart';
+import 'package:AivoCartsWebsite/View/Featurespages/Featurespage.dart';
+import 'package:AivoCartsWebsite/View/Homepages/Homepage.dart';
+import 'package:AivoCartsWebsite/View/HowItWorkpages/HowItWorkpage.dart';
+import 'package:AivoCartsWebsite/View/Navigationpage/DesktopNavbar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -22,8 +23,10 @@ class _MainPageState extends State<MainPage> {
   final homepageKey = GlobalKey();
   final featuresKey = GlobalKey();
   final howItWorkKey = GlobalKey();
+  final blog=GlobalKey();
   final benefitsKey = GlobalKey();
   final contactKey = GlobalKey();
+
   final signupkey=GlobalKey();
 
   final scrollController = ScrollController();
@@ -44,12 +47,13 @@ class _MainPageState extends State<MainPage> {
     return Scaffold(
       appBar: MediaQuery.of(context).size.width < 600
           ? AppBar(
-        title:  Text('IoTrolley', style: GoogleFonts.montserrat(
-          fontSize: 18,
-          fontWeight: FontWeight.w700,
-          color: AppColors.black,
-        ),), // Or use your logo here
+        //   title:  Image.asset(
+        //   'assets/Images/img.png',height: 80,
+        //
+        // ), // Or use your logo here
+        backgroundColor: Colors.blue, // ✅ Added white background
         elevation: 0,
+        iconTheme: IconThemeData(color: Colors.black), // ✅ Added black icon color for visibility
       )
           : null,
       drawer: MediaQuery.of(context).size.width < 600
@@ -59,17 +63,14 @@ class _MainPageState extends State<MainPage> {
           children: [
             DrawerHeader(
               decoration: BoxDecoration(
-                color: Colors.blue, // Use your brand color
+                color: Colors.white, // Use your brand color
               ),
-              child: Text(
-                'IoTrolley',
-                style: GoogleFonts.montserrat(
-                  fontSize: 15,
-                  fontWeight: FontWeight.w700,
-                  color:  AppColors.white,
-                ),
+              child: Image.asset(
+                'assets/Images/img.png',
+                height: 80,
               ),
             ),
+
             ListTile(
               title:  Text('Home', style: GoogleFonts.montserrat(
                 fontSize: 15,
@@ -115,6 +116,18 @@ class _MainPageState extends State<MainPage> {
               },
             ),
             ListTile(
+              title:  Text('Blog', style: GoogleFonts.montserrat(
+                fontSize: 15,
+                fontWeight: FontWeight.w700,
+                color:  AppColors.black,
+              ),),
+              onTap: () {
+                Navigator.pop(context);
+                Get.toNamed(AppRoutes.blog);
+              },
+            ),
+
+            ListTile(
               title:  Text('Contact', style: GoogleFonts.montserrat(
                 fontSize: 15,
                 fontWeight: FontWeight.w700,
@@ -142,6 +155,12 @@ class _MainPageState extends State<MainPage> {
           : null,
       body: Column(
         children: [
+          // ✅ Added divider line below AppBar (same as SignUp page)
+          if (MediaQuery.of(context).size.width < 600)
+            Container(
+              height: 1,
+              color: Color(0xFF05203D),
+            ),
           // Only show DesktopNavbar when screen width is >= 600
           if (MediaQuery.of(context).size.width >= 600)
             DesktopNavbar(
@@ -149,6 +168,7 @@ class _MainPageState extends State<MainPage> {
               onFeaturesTap: () => scrollToSection(featuresKey),
               onHowItWorksTap: () => scrollToSection(howItWorkKey),
               onBenefitsTap: () => scrollToSection(benefitsKey),
+              onBlogTap: () => Get.toNamed(AppRoutes.blog),
               onContactTap: () => scrollToSection(contactKey),
               onSignUpTap: () => Get.toNamed(AppRoutes.signup),
             ),
@@ -176,6 +196,7 @@ class _MainPageState extends State<MainPage> {
                         onRequestDemoTap: () => scrollToSection(contactKey)),
                   ),
                   Container(key: benefitsKey, child: BenefitsPage()),
+
                   Container(key: contactKey, child: ContactPage()),
                   const Footer(),
                 ],

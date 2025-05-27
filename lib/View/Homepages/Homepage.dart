@@ -1,10 +1,13 @@
-import 'package:SmartTrolleyWebsite/Support/CommonElevatedButton.dart';
-import 'package:SmartTrolleyWebsite/Support/CommonHoverImage.dart';
-import 'package:SmartTrolleyWebsite/Support/CommonTextStyle.dart';
-import 'package:SmartTrolleyWebsite/Utils/AppColors.dart';
+
+import 'package:AivoCartsWebsite/Support/CommonElevatedButton.dart';
+import 'package:AivoCartsWebsite/Support/CommonHoverImage.dart';
+import 'package:AivoCartsWebsite/Support/CommonTextStyle.dart';
+import 'package:AivoCartsWebsite/Utils/AppColors.dart';
+import 'package:animate_do/animate_do.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+
 
 class Homepage extends StatelessWidget {
   final VoidCallback onSeeHowItWorks;
@@ -29,30 +32,52 @@ class Homepage extends StatelessWidget {
         ),
         child: Column(
           children: [
-            const SizedBox(height: 60),
             isMobile ? buildMobileLayout(context) : buildDesktopLayout(context),
             const SizedBox(height: 60),
-            buildTrolleyImageSlider(),
-
+            FadeInUp(child: buildTrolleyImageSlider()), // ✅ Animation added
           ],
-
         ),
       ),
     );
   }
 
   Widget buildDesktopLayout(BuildContext context) {
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.start,
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        Expanded(
-          flex: 5,
-          child: buildTextContentSection(context),
+        FadeInDown( // ✅ Animated heading
+          duration: Duration(milliseconds: 800),
+          child: Center(
+            child: Text(
+              'Welcome to the Future of Smart Shopping',
+              style: GoogleFonts.montserrat(
+                fontSize: 28,
+                fontWeight: FontWeight.w700,
+                color: AppColors.black,
+              ),
+            ),
+          ),
         ),
-        const SizedBox(width: 20),
-        Expanded(
-          flex: 5,
-          child: buildImageSection(),
+        const SizedBox(height: 30),
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Expanded(
+              flex: 5,
+              child: FadeInLeft( // ✅ Animated text section
+                duration: Duration(milliseconds: 800),
+                child: buildTextContentSection(context),
+              ),
+            ),
+            const SizedBox(width: 20),
+            Expanded(
+              flex: 5,
+              child: FadeInRight( // ✅ Animated image section
+                duration: Duration(milliseconds: 800),
+                child: buildImageSection(),
+              ),
+            ),
+          ],
         ),
       ],
     );
@@ -61,9 +86,9 @@ class Homepage extends StatelessWidget {
   Widget buildMobileLayout(BuildContext context) {
     return Column(
       children: [
-        buildImageSection(),
+        FadeInUp(child: buildImageSection()), // ✅ Animation
         const SizedBox(height: 30),
-        buildTextContentSection(context),
+        FadeInUp(delay: Duration(milliseconds: 200), child: buildTextContentSection(context)),
       ],
     );
   }
@@ -75,60 +100,64 @@ class Homepage extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          'Revolutionize Shopping With IO Trolley',
+          'Revolutionizing Retail with Intelligent Cart Technology',
           style: GoogleFonts.montserrat(
-            fontSize: 28,
+            fontSize: 24,
             fontWeight: FontWeight.w700,
             color: AppColors.black,
           ),
         ),
         const SizedBox(height: 20),
         Text(
-          'Transform your retail experience with AI-powered trolleys that eliminate checkout lines, track purchases, and personalize shopping journeys.',
+          'At AivoCarts, we are transforming the way people shop. Powered by cutting-edge artificial intelligence, computer vision, and seamless integration technology, our smart carts turn every shopping trip into a personalized, checkout-free experience. Say goodbye to long lines and hello to effortless, enjoyable retail.',
           style: GoogleFonts.montserrat(
             fontSize: 16,
             fontWeight: FontWeight.w600,
             height: 1.6,
-            color: Color(0xFF5A5A5A),
+            color: const Color(0xFF5A5A5A),
           ),
-
         ),
         const SizedBox(height: 20),
         buildButtonRow(isMobile),
         const SizedBox(height: 30),
         buildStatsGrid(),
       ],
-
     );
-
-
   }
 
   Widget buildButtonRow(bool isMobile) {
     return isMobile
         ? Column(
       children: [
-        CommonElevatedButton(
-          text: "See How It Works",
-          onPressed: onSeeHowItWorks,
+        BounceInLeft(
+          child: CommonElevatedButton(
+            text: "See How It Works",
+            onPressed: onSeeHowItWorks,
+          ),
         ),
         const SizedBox(height: 10),
-        CommonElevatedButton(
-          text: "Explore Features",
-          onPressed: onExploreFeatures,
+        BounceInRight(
+          child: CommonElevatedButton(
+            text: "Explore Features",
+            onPressed: onExploreFeatures,
+          ),
         ),
       ],
     )
         : Row(
       children: [
-        CommonElevatedButton(
-          text: "See How It Works",
-          onPressed: onSeeHowItWorks,
+        BounceInLeft(
+          child: CommonElevatedButton(
+            text: "See How It Works",
+            onPressed: onSeeHowItWorks,
+          ),
         ),
         const SizedBox(width: 10),
-        CommonElevatedButton(
-          text: "Explore Features",
-          onPressed: onExploreFeatures,
+        BounceInRight(
+          child: CommonElevatedButton(
+            text: "Explore Features",
+            onPressed: onExploreFeatures,
+          ),
         ),
       ],
     );
@@ -141,8 +170,7 @@ class Homepage extends StatelessWidget {
         ClipRRect(
           borderRadius: BorderRadius.circular(12),
           child: HoverImage(
-            url:  'assets/Images/payandgo.png',
-            // fit: BoxFit.contain,
+            url: 'assets/Images/payandgo.png',
           ),
         ),
       ],
@@ -161,17 +189,7 @@ class Homepage extends StatelessWidget {
       ],
     );
   }
-  Widget buildTrolleyImage(String path, {double width = 400, double height = 260}) {
-    return ClipRRect(
-      borderRadius: BorderRadius.circular(12),
-      child: HoverImage(
-        url:   path,
-        // width: width,
-        height: height,
-        // fit: BoxFit.cover,
-      ),
-    );
-  }
+
   Widget buildTrolleyImageSlider() {
     final List<String> imagePaths = [
       'assets/Images/TrollyAction1.jpg',
@@ -183,7 +201,7 @@ class Homepage extends StatelessWidget {
 
     return CarouselSlider(
       options: CarouselOptions(
-        height: 400, // 🔼 Increased height
+        height: 400,
         autoPlay: true,
         enlargeCenterPage: true,
         viewportFraction: 0.6,
@@ -194,20 +212,17 @@ class Homepage extends StatelessWidget {
         return Builder(
           builder: (BuildContext context) {
             return ClipRRect(
-              // borderRadius: BorderRadius.circular(12),
-                child: Image.asset(
-                  path,
-                  width: 800,  // 🔼 Added width
-                  fit: BoxFit.fill, // 🔼 Make image cover full area
-                )
+              child: Image.asset(
+                path,
+                width: 800,
+                fit: BoxFit.fill,
+              ),
             );
           },
         );
       }).toList(),
     );
   }
-
-
 }
 
 class InfoTile extends StatelessWidget {
@@ -221,25 +236,26 @@ class InfoTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          title,
-          style: GoogleFonts.montserrat(
-              fontSize: 20,
-              fontWeight: FontWeight.w700,
-              color: Colors.blue),
-        ),
-        Text(
-          subtitle,
-          style: GoogleFonts.montserrat(
-            fontSize: 15,
-            fontWeight: FontWeight.w600,
-            color: Colors.black,
+    return FadeInUp(
+      duration: Duration(milliseconds: 600),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            title,
+            style: GoogleFonts.montserrat(
+                fontSize: 20, fontWeight: FontWeight.w700, color: Colors.blue),
           ),
-        ),
-      ],
+          Text(
+            subtitle,
+            style: GoogleFonts.montserrat(
+              fontSize: 15,
+              fontWeight: FontWeight.w600,
+              color: Colors.black,
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
@@ -261,6 +277,5 @@ class RetailerText extends StatelessWidget {
         fontSize: 20,
       ),
     );
-
   }
 }

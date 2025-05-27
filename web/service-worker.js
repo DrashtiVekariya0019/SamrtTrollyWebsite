@@ -1,4 +1,4 @@
-const CACHE_NAME = "SmartTrolleyWebsite";
+const CACHE_NAME = "AivoCartsWebsite";
 const urlsToCache = [
    '/',
     '/index.html',

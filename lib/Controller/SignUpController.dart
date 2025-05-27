@@ -1,6 +1,7 @@
 import 'dart:convert';
-import 'package:SmartTrolleyWebsite/Services/ApiFunction.dart';
-import 'package:SmartTrolleyWebsite/Support/SnckbarHelper.dart';
+
+import 'package:AivoCartsWebsite/Services/ApiFunction.dart';
+import 'package:AivoCartsWebsite/Support/SnckbarHelper.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

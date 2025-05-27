@@ -1,8 +1,8 @@
-import 'package:SmartTrolleyWebsite/Controller/ContactController.dart';
-import 'package:SmartTrolleyWebsite/Support/CommonElevatedButton.dart';
-import 'package:SmartTrolleyWebsite/Support/CommonHoverImage.dart';
-import 'package:SmartTrolleyWebsite/Support/CommonTextStyle.dart';
-import 'package:SmartTrolleyWebsite/Utils/AppColors.dart';
+
+import 'package:AivoCartsWebsite/Controller/ContactController.dart';
+import 'package:AivoCartsWebsite/Support/CommonElevatedButton.dart';
+import 'package:AivoCartsWebsite/Support/CommonHoverImage.dart';
+import 'package:AivoCartsWebsite/Utils/AppColors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -348,7 +348,7 @@ class _ContactPageState extends State<ContactPage> {
           const SizedBox(height: 15),
           contactTile(
             Icons.email,
-            "Email\nSales: sales@iotrolly.com\nSupport: support@iotrolly.com",
+            "Email\nSales: sales@aivocarts.com\nSupport: support@aivocarts.com",
           ),
           const SizedBox(height: 15),
           contactTile(

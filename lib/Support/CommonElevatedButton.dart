@@ -1,7 +1,6 @@
-import 'package:SmartTrolleyWebsite/Support/CommonTextStyle.dart';
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-
 
 class CommonElevatedButton extends StatelessWidget {
   final String text;
@@ -18,7 +17,7 @@ class CommonElevatedButton extends StatelessWidget {
     return ElevatedButton(
       onPressed: onPressed,
       style: ElevatedButton.styleFrom(
-        backgroundColor: Colors.blue[800],
+        backgroundColor:   Color(0xFF05203D),
         padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.zero),
       ),

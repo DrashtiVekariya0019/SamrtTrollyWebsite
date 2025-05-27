@@ -1,7 +1,8 @@
-import 'package:SmartTrolleyWebsite/Controller/HowItWorkController.dart';
-import 'package:SmartTrolleyWebsite/Support/CommonElevatedButton.dart';
-import 'package:SmartTrolleyWebsite/Support/CommonTextStyle.dart';
-import 'package:SmartTrolleyWebsite/Utils/AppColors.dart';
+
+import 'package:AivoCartsWebsite/Controller/HowItWorkController.dart';
+import 'package:AivoCartsWebsite/Support/CommonElevatedButton.dart';
+import 'package:AivoCartsWebsite/Support/CommonTextStyle.dart';
+import 'package:AivoCartsWebsite/Utils/AppColors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -115,7 +116,7 @@ class HowItWorkPage extends StatelessWidget {
           step["title"],
           style: GoogleFonts.montserrat(
             fontSize: 16,
-            fontWeight: FontWeight.w700,
+            fontWeight: FontWeight.w800,
             color: AppColors.black,
           ),
         ),
@@ -123,7 +124,7 @@ class HowItWorkPage extends StatelessWidget {
         Text(
           step["desc"],
           style: GoogleFonts.montserrat(
-            fontSize: 14,
+            fontSize: 15,
             fontWeight: FontWeight.w600,
             height: 1.6,
             color: Color(0xFF5A5A5A),
@@ -266,4 +267,3 @@ class _HoverImageState extends State<HoverImage> {
     );
   }
 }
-

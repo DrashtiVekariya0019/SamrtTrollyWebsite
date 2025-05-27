@@ -1,15 +1,15 @@
-import 'package:SmartTrolleyWebsite/Controller/SignUpController.dart';
-import 'package:SmartTrolleyWebsite/Support/CommonElevatedButton.dart';
 
-import 'package:SmartTrolleyWebsite/Support/Footer.dart';
-import 'package:SmartTrolleyWebsite/Utils/AppColors.dart';
-
-import 'package:SmartTrolleyWebsite/View/Navigationpage/Appbar.dart';
-import 'package:SmartTrolleyWebsite/View/Navigationpage/DesktopNavbar.dart';
+import 'package:AivoCartsWebsite/Controller/SignUpController.dart';
+import 'package:AivoCartsWebsite/Support/CommonElevatedButton.dart';
+import 'package:AivoCartsWebsite/Support/Footer.dart';
+import 'package:AivoCartsWebsite/Utils/AppColors.dart';
+import 'package:AivoCartsWebsite/View/Navigationpage/AppBar.dart';
+import 'package:AivoCartsWebsite/View/Navigationpage/DesktopNavbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+
 
 class SignUpPageContent extends StatefulWidget {
   @override
@@ -37,6 +37,7 @@ class _SignUpPageContentState extends State<SignUpPageContent> {
                 onHowItWorksTap: () => Get.toNamed('/home'),
                 onBenefitsTap: () => Get.toNamed('/home'),
                 onContactTap: () => Get.toNamed('/home'),
+                onBlogTap:() => Get.toNamed('/blog'),
                 onSignUpTap: () => {},
               ),
             Expanded(
